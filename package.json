@@ -23,8 +23,8 @@
     "version": "yarn build"
   },
   "dependencies": {
-    "@manuscripts/csl-locales": "^0.0.4",
-    "@manuscripts/csl-styles": "^0.2.0",
+    "@manuscripts/csl-locales": "^0.0.5",
+    "@manuscripts/csl-styles": "^0.2.1",
     "@manuscripts/data": "^0.1.2",
     "@manuscripts/manuscript-transform": "^0.40.0",
     "astrocite-bibtex": "^0.16.4",
