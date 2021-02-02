@@ -38,7 +38,7 @@
     "@babel/preset-typescript": "^7.12.1",
     "@manuscripts/eslint-config": "^0.4.2",
     "@manuscripts/examples": "^0.0.7",
-    "@manuscripts/manuscripts-json-schema": "^1.45.0",
+    "@manuscripts/manuscripts-json-schema": "^1.45.6",
     "@types/jest": "^26.0.15",
     "@types/prosemirror-model": "^1.11.1",
     "@typescript-eslint/eslint-plugin": "^4.8.1",
