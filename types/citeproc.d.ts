@@ -16,6 +16,7 @@
 
 // https://citeproc-js.readthedocs.io/en/latest/running.html#introduction
 // https://github.com/citation-style-language/schema
+// https://github.com/Zettlr/Zettlr/blob/dd2cbda72d9499edae6a1d95fb977794bde1ed4e/source/citeproc.d.ts
 
 declare module 'citeproc' {
   interface Citation {
@@ -45,7 +46,15 @@ declare module 'citeproc' {
   }
 
   interface BibliographyMetadata {
+    maxoffset: number
+    entryspacing: number
+    linespacing: number
+    hangingindent: boolean
+    ["second-field-align"]: boolean
+    bibstart: string
+    bibend: string
     bibliography_errors: string[]
+    entry_ids: string[]
   }
 
   type Bibliography = string[]
@@ -57,6 +66,10 @@ declare module 'citeproc' {
       lang?: string,
       forceLang?: boolean
     )
+
+    public updateItems(idList: Array<string | number>): void
+
+    public updateUncitedItems(idList: Array<string | number>): void
 
     public rebuildProcessorState(
       citations: Citation[],

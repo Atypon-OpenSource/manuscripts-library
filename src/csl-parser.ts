@@ -13,8 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+import { BibliographyItem } from '@manuscripts/manuscripts-json-schema'
 import { evaluateXPathToString } from 'fontoxpath'
+
+import { convertCSLToBibliographyItem } from './csl-converter'
 
 const FIELD_MAPS: Map<string, keyof CSL.Data> = new Map([
   ['title', 'title'],
@@ -31,7 +33,7 @@ const TYPE_MAP: Map<number, CSL.ItemType> = new Map([
   [400, 'article-journal'],
 ])
 
-export const parse = (xml: string): CSL.Data[] => {
+export const papersCitationsParser = (xml: string): CSL.Data[] => {
   const doc = new DOMParser().parseFromString(xml, 'application/xml')
 
   // @ts-ignore
@@ -169,11 +171,55 @@ export const parse = (xml: string): CSL.Data[] => {
 
     return output as CSL.Data
   }
-
   const publicationNodes = evaluateXPathToNodes(
     '/citation/publications/publication',
     doc
   )
-
   return publicationNodes.map(parseItem)
+}
+
+const chooseParser = (format: string) => {
+  format = format.replace(/^application\/(x-)?/, '')
+
+  switch (format) {
+    case '.bib':
+    case 'bibtex':
+      return import('astrocite-bibtex')
+
+    case '.ris':
+    case 'research-info-systems':
+      return import('astrocite-ris')
+
+    case 'papers-citations-xml':
+      return Promise.resolve({
+        parse: papersCitationsParser,
+      })
+
+    case 'citeproc+json':
+      return Promise.resolve({
+        parse: JSON.parse,
+      })
+
+    default:
+      throw new Error(`Unknown citation format ${format}`)
+  }
+}
+
+const validRISLine = /^(\w{2}\s{2}-\s.+|ER\s{2}-\s*)$/
+
+export const parseBibliography = async (
+  data: string,
+  extension: string
+): Promise<Partial<BibliographyItem>[]> => {
+  const { parse } = await chooseParser(extension)
+
+  if (extension === '.ris') {
+    // remove invalid lines
+    data = data
+      .split(/[\n\r]+/)
+      .filter((line) => validRISLine.test(line))
+      .join('\n')
+  }
+
+  return parse(data).map(convertCSLToBibliographyItem)
 }

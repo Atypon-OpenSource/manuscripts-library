@@ -15,6 +15,7 @@
     "build:es": "tsc --outDir dist/es --declarationDir dist/types --declaration --project tsconfig.build.json",
     "dev": "concurrently 'yarn:build:* --watch'",
     "lint": "eslint src --ext .ts,.tsx",
+    "lint:fix": "eslint src --fix --ext .ts,.tsx",
     "prebuild": "rimraf dist",
     "prettier": "prettier --write 'src/**/*.{ts,tsx}'",
     "preversion": "concurrently 'yarn:typecheck' 'yarn:lint' 'yarn:test'",
@@ -26,11 +27,11 @@
     "@manuscripts/csl-locales": "^0.0.5",
     "@manuscripts/csl-styles": "^0.2.1",
     "@manuscripts/data": "^0.1.2",
-    "@manuscripts/manuscript-transform": "^0.42.8",
+    "@manuscripts/manuscript-transform": "^0.42.12",
     "astrocite-bibtex": "^0.16.4",
     "astrocite-ris": "^0.16.4",
     "citeproc": "^2.4.48",
-    "fontoxpath": "^3.14.0"
+    "fontoxpath": "^3.17.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
@@ -40,7 +41,7 @@
     "@manuscripts/examples": "^0.0.7",
     "@manuscripts/manuscripts-json-schema": "^1.46.2",
     "@types/jest": "^26.0.15",
-    "@types/prosemirror-model": "^1.11.1",
+    "@types/prosemirror-model": "~1.13.0",
     "@typescript-eslint/eslint-plugin": "^4.8.1",
     "@typescript-eslint/parser": "^4.8.1",
     "babel-plugin-dynamic-import-node": "^2.3.3",
@@ -66,5 +67,8 @@
     "prosemirror-model": "~1.14.0",
     "rimraf": "^3.0.2",
     "typescript": "^4.0.5"
+  },
+  "resolutions": {
+    "@types/prosemirror-model": "~1.13.0"
   }
 }

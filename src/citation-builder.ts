@@ -15,22 +15,22 @@
  */
 
 import {
-  CitationNode,
   isCitationNode,
   ManuscriptNode,
 } from '@manuscripts/manuscript-transform'
-import {
+import type {
   BibliographyItem,
   Citation,
   CitationItem,
-  Manuscript,
   Model,
 } from '@manuscripts/manuscripts-json-schema'
 import CiteProc from 'citeproc'
 
+import type { CitationNodes } from './types'
+
 export const buildCitationNodes = (
   doc: ManuscriptNode,
-  getModel: GetModel
+  getModel: <T extends Model>(id: string) => T | undefined
 ): CitationNodes => {
   const citationNodes: CitationNodes = []
 
@@ -46,11 +46,6 @@ export const buildCitationNodes = (
 
   return citationNodes
 }
-
-export type CitationNodes = Array<[CitationNode, number, Citation]>
-export type GetLibraryItem = (id: string) => BibliographyItem | undefined
-export type GetModel = <T extends Model>(id: string) => T | undefined
-export type GetManuscript = () => Manuscript
 
 type DisplayScheme =
   | 'show-all'
@@ -68,8 +63,7 @@ const chooseMode = (displayScheme?: DisplayScheme) => {
 
 export const buildCitations = (
   citationNodes: CitationNodes,
-  getLibraryItem: GetLibraryItem,
-  getManuscript: GetManuscript
+  getLibraryItem: (id: string) => BibliographyItem | undefined
 ): CiteProc.Citation[] =>
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   citationNodes.map(([node, pos, citation]) => ({
@@ -88,24 +82,23 @@ export const buildCitations = (
       infix:
         citation.displayScheme === 'composite' ? citation.infix : undefined,
     },
-    manuscript: getManuscript(), // for comparison
   }))
 
-export const bibliographyElementContents = (
-  node: ManuscriptNode,
-  id: string,
-  items: string[]
-): string => {
+export const createBibliographyElementContents = (
+  bibliographyItems: string[],
+  id?: string,
+  placeholder?: string
+): HTMLElement => {
   const contents = document.createElement('div')
   contents.classList.add('csl-bib-body')
-  contents.setAttribute('id', id)
+  id && contents.setAttribute('id', id)
 
-  if (items.length) {
-    contents.innerHTML = items.join('\n')
+  if (bibliographyItems.length) {
+    contents.innerHTML = bibliographyItems.join('\n')
   } else {
     contents.classList.add('empty-node')
-    contents.setAttribute('data-placeholder', node.attrs.placeholder)
+    placeholder && contents.setAttribute('data-placeholder', placeholder)
   }
 
-  return contents.outerHTML
+  return contents
 }

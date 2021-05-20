@@ -134,7 +134,7 @@ const isPersonFieldKey = (key: string): key is CSL.PersonFieldKey =>
 const isDateFieldKey = (key: string): key is CSL.DateFieldKey =>
   dateFields.includes(key as CSL.DateFieldKey)
 
-export const convertDataToBibliographyItem = (
+export const convertCSLToBibliographyItem = (
   data: CSL.Data
 ): Partial<BibliographyItem> => {
   // const output: { [key in keyof BibliographyItem]: BibliographyItem[key] } = {}
@@ -161,7 +161,7 @@ export const convertDataToBibliographyItem = (
   return output
 }
 
-export const convertBibliographyItemToData = (
+export const convertBibliographyItemToCSL = (
   bibliographyItem: BibliographyItem
 ): CSL.Data =>
   Object.entries(bibliographyItem).reduce(

@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { variableWrapper } from '../variable-wrapper'
+import { variableWrapper } from '../citeproc-variable-wrapper'
 
-describe('bibliography variable wrapper', () => {
+describe('citeproc variable wrapper', () => {
   test('wraps DOIs with links', () => {
     const itemData = {
       DOI: '10.1234/567.10.foo',

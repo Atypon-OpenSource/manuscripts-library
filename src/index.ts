@@ -13,5 +13,37 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+export { parseBibliography } from './csl-parser'
 
-export * from './lib'
+export { CitationProvider } from './CitationProvider'
+
+export { loadCitationStyle } from './csl-styles'
+
+export {
+  matchLibraryItemByIdentifier,
+  bibliographyItemTypes,
+} from './citation-matcher'
+
+export {
+  buildCitationNodes,
+  buildCitations,
+  createBibliographyElementContents,
+} from './citation-builder'
+
+export {
+  convertCSLToBibliographyItem,
+  convertBibliographyItemToCSL,
+  fixCSLData,
+} from './csl-converter'
+
+export {
+  issuedYear,
+  estimateID,
+  shortAuthorsString,
+  fullAuthorsString,
+  authorsString,
+  shortLibraryItemMetadata,
+  fullLibraryItemMetadata,
+} from './citation-utils'
+
+export type { CitationNodes } from './types'

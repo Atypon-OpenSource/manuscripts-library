@@ -20,12 +20,12 @@ import {
 } from '@manuscripts/manuscripts-json-schema'
 
 import {
-  convertBibliographyItemToData,
-  convertDataToBibliographyItem,
+  convertBibliographyItemToCSL,
+  convertCSLToBibliographyItem,
   fixCSLData,
-} from '../convert'
+} from '../csl-converter'
 
-describe('CSL', () => {
+describe('csl-converter', () => {
   test('converts data from CSL to bibliography items', () => {
     const data: CSL.Data = {
       id: 'foo',
@@ -34,7 +34,7 @@ describe('CSL', () => {
       illustrator: [{ family: 'Derp' }],
       accessed: { literal: 'yesterday' },
     }
-    const bibItem = convertDataToBibliographyItem(data)
+    const bibItem = convertCSLToBibliographyItem(data)
     expect(bibItem.DOI).toMatch(data.DOI!)
     expect(bibItem.type).toMatch('article')
     expect(bibItem.illustrator![0].objectType).toMatch(
@@ -65,7 +65,7 @@ describe('CSL', () => {
       createdAt: 0,
       updatedAt: 0,
     }
-    const data = convertBibliographyItemToData(item)
+    const data = convertBibliographyItemToCSL(item)
 
     expect(data).toEqual({
       DOI: 'foo',
@@ -78,7 +78,7 @@ describe('CSL', () => {
     const itemMissingType = { ...item }
     // @ts-ignore
     delete itemMissingType.type
-    const dataWithDefaultType = convertBibliographyItemToData(itemMissingType)
+    const dataWithDefaultType = convertBibliographyItemToCSL(itemMissingType)
 
     expect(dataWithDefaultType).toEqual({
       DOI: 'foo',

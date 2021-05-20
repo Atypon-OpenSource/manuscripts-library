@@ -22,7 +22,7 @@ import {
   issuedYear,
   shortAuthorsString,
   shortLibraryItemMetadata,
-} from '../library'
+} from '../citation-utils'
 
 describe('issued year', () => {
   it('issuedYear', () => {

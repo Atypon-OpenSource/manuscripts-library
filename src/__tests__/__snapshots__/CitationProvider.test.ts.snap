@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`citation processor generates bibliography: bibliography-items-http://www.zotero.org/styles/3-biotech 1`] = `
+exports[`CitationProvider generates bibliography: bibliography-items-http://www.zotero.org/styles/3-biotech 1`] = `
 Array [
   "  <div class=\\"csl-entry\\"><span data-field=\\"author\\">Guicciardi ME, Gores GJ</span> <span data-field=\\"issued\\">(2003)</span> <a href=\\"https://doi.org/10.1172%2Fjci18911\\" data-field=\\"title\\">AIP1: a new player in TNF signaling</a>. <span data-field=\\"container-title\\">J Clin Invest</span> <span data-field=\\"volume\\">111</span>:<span data-field=\\"page\\">1813–1815</span>. <a href=\\"https://doi.org/10.1172%2Fjci18911\\" data-field=\\"DOI\\">https://doi.org/10.1172/jci18911</a></div>
 ",
@@ -15,7 +15,7 @@ Array [
 ]
 `;
 
-exports[`citation processor generates bibliography: bibliography-items-http://www.zotero.org/styles/american-medical-association 1`] = `
+exports[`CitationProvider generates bibliography: bibliography-items-http://www.zotero.org/styles/american-medical-association 1`] = `
 Array [
   "  <div class=\\"csl-entry\\">
     <div class=\\"csl-left-margin\\"><span data-field=\\"citation-number\\">1</span>. </div><div class=\\"csl-right-inline\\"><span data-field=\\"author\\">Rodal AA, Littleton JT</span>. <a href=\\"https://doi.org/10.1016%2Fj.cub.2008.02.014\\" data-field=\\"title\\">Synaptic Endocytosis: Illuminating the Role of Clathrin Assembly</a>. <span data-field=\\"container-title\\"><i>Current Biology</i></span>. <span data-field=\\"issued\\">2008;</span><span data-field=\\"volume\\">18</span><span data-field=\\"issue\\">(6)</span>:<span data-field=\\"page\\">R259-R261</span>. doi:<a href=\\"https://doi.org/10.1016%2Fj.cub.2008.02.014\\" data-field=\\"DOI\\">10.1016/j.cub.2008.02.014</a></div>
@@ -40,7 +40,7 @@ Array [
 ]
 `;
 
-exports[`citation processor generates bibliography: bibliography-items-http://www.zotero.org/styles/infection-and-immunity 1`] = `
+exports[`CitationProvider generates bibliography: bibliography-items-http://www.zotero.org/styles/infection-and-immunity 1`] = `
 Array [
   "  <div class=\\"csl-entry\\">
     <div class=\\"csl-left-margin\\"><span data-field=\\"citation-number\\">1</span>. </div><div class=\\"csl-right-inline\\"><span data-field=\\"author\\">Rodal AA, Littleton JT</span>. <span data-field=\\"issued\\">2008</span>. <a href=\\"https://doi.org/10.1016%2Fj.cub.2008.02.014\\" data-field=\\"title\\">Synaptic Endocytosis: Illuminating the Role of Clathrin Assembly</a>. <span data-field=\\"container-title\\">Current Biology</span> <span data-field=\\"volume\\">18</span>:<span data-field=\\"page\\">R259–R261</span>.</div>
@@ -65,7 +65,7 @@ Array [
 ]
 `;
 
-exports[`citation processor generates bibliography: bibliography-items-http://www.zotero.org/styles/nature 1`] = `
+exports[`CitationProvider generates bibliography: bibliography-items-http://www.zotero.org/styles/nature 1`] = `
 Array [
   "  <div class=\\"csl-entry\\">
     <div class=\\"csl-left-margin\\"><span data-field=\\"citation-number\\">1</span>.</div><div class=\\"csl-right-inline\\"><span data-field=\\"author\\">Rodal, A. A. &amp; Littleton, J. T</span>. <a href=\\"https://doi.org/10.1016%2Fj.cub.2008.02.014\\" data-field=\\"title\\">Synaptic Endocytosis: Illuminating the Role of Clathrin Assembly</a>. <span data-field=\\"container-title\\"><i>Current Biology</i></span> <span data-field=\\"volume\\"><b>18</b></span>, <span data-field=\\"page\\">R259–R261</span> <span data-field=\\"issued\\">(2008)</span>.</div>
@@ -90,7 +90,7 @@ Array [
 ]
 `;
 
-exports[`citation processor generates bibliography: bibliography-items-http://www.zotero.org/styles/peerj 1`] = `
+exports[`CitationProvider generates bibliography: bibliography-items-http://www.zotero.org/styles/peerj 1`] = `
 Array [
   "  <div class=\\"csl-entry\\"><span data-field=\\"author\\">Guicciardi ME, Gores GJ</span>. <span data-field=\\"issued\\">2003</span>. <a href=\\"https://doi.org/10.1172%2Fjci18911\\" data-field=\\"title\\">AIP1: a new player in TNF signaling</a>. <span data-field=\\"container-title\\"><i>Journal of Clinical Investigation</i></span> <span data-field=\\"volume\\">111</span>:<span data-field=\\"page\\">1813–1815</span>. <a href=\\"https://doi.org/10.1172%2Fjci18911\\" data-field=\\"DOI\\">DOI: 10.1172/jci18911</a>.</div>
 ",
@@ -105,7 +105,7 @@ Array [
 ]
 `;
 
-exports[`citation processor generates bibliography: bibliography-items-http://www.zotero.org/styles/plos 1`] = `
+exports[`CitationProvider generates bibliography: bibliography-items-http://www.zotero.org/styles/plos 1`] = `
 Array [
   "  <div class=\\"csl-entry\\">
     <div class=\\"csl-left-margin\\"><span data-field=\\"citation-number\\">1</span>. </div><div class=\\"csl-right-inline\\"><span data-field=\\"author\\">Rodal AA, Littleton JT</span>. <a href=\\"https://doi.org/10.1016%2Fj.cub.2008.02.014\\" data-field=\\"title\\">Synaptic Endocytosis: Illuminating the Role of Clathrin Assembly</a>. <span data-field=\\"container-title\\">Current Biology</span>. <span data-field=\\"issued\\">2008;</span><span data-field=\\"volume\\">18</span>: <span data-field=\\"page\\">R259–R261</span>. <a href=\\"https://doi.org/10.1016%2Fj.cub.2008.02.014\\" data-field=\\"DOI\\">doi:10.1016/j.cub.2008.02.014</a></div>
@@ -130,7 +130,7 @@ Array [
 ]
 `;
 
-exports[`citation processor generates bibliography: bibliography-items-http://www.zotero.org/styles/science 1`] = `
+exports[`CitationProvider generates bibliography: bibliography-items-http://www.zotero.org/styles/science 1`] = `
 Array [
   "  <div class=\\"csl-entry\\">
     <div class=\\"csl-left-margin\\"><span data-field=\\"citation-number\\">1</span>. </div><div class=\\"csl-right-inline\\"><span data-field=\\"author\\">A. A. Rodal, J. T. Littleton</span>, <a href=\\"https://doi.org/10.1016%2Fj.cub.2008.02.014\\" data-field=\\"title\\">Synaptic Endocytosis: Illuminating the Role of Clathrin Assembly</a>. <span data-field=\\"container-title\\"><i>Current Biology</i></span>. <span data-field=\\"volume\\"><b>18</b></span>, <span data-field=\\"page\\">R259–R261</span> (<span data-field=\\"issued\\">2008</span>).</div>
@@ -155,7 +155,7 @@ Array [
 ]
 `;
 
-exports[`citation processor generates bibliography: citations-http://www.zotero.org/styles/3-biotech 1`] = `
+exports[`CitationProvider generates bibliography: citations-http://www.zotero.org/styles/3-biotech 1`] = `
 Array [
   Array [
     "MPCitation:31E42852-8377-4550-8C25-9E602EE657B0",
@@ -170,7 +170,7 @@ Array [
 ]
 `;
 
-exports[`citation processor generates bibliography: citations-http://www.zotero.org/styles/american-medical-association 1`] = `
+exports[`CitationProvider generates bibliography: citations-http://www.zotero.org/styles/american-medical-association 1`] = `
 Array [
   Array [
     "MPCitation:31E42852-8377-4550-8C25-9E602EE657B0",
@@ -185,7 +185,7 @@ Array [
 ]
 `;
 
-exports[`citation processor generates bibliography: citations-http://www.zotero.org/styles/infection-and-immunity 1`] = `
+exports[`CitationProvider generates bibliography: citations-http://www.zotero.org/styles/infection-and-immunity 1`] = `
 Array [
   Array [
     "MPCitation:31E42852-8377-4550-8C25-9E602EE657B0",
@@ -200,7 +200,7 @@ Array [
 ]
 `;
 
-exports[`citation processor generates bibliography: citations-http://www.zotero.org/styles/nature 1`] = `
+exports[`CitationProvider generates bibliography: citations-http://www.zotero.org/styles/nature 1`] = `
 Array [
   Array [
     "MPCitation:31E42852-8377-4550-8C25-9E602EE657B0",
@@ -215,7 +215,7 @@ Array [
 ]
 `;
 
-exports[`citation processor generates bibliography: citations-http://www.zotero.org/styles/peerj 1`] = `
+exports[`CitationProvider generates bibliography: citations-http://www.zotero.org/styles/peerj 1`] = `
 Array [
   Array [
     "MPCitation:31E42852-8377-4550-8C25-9E602EE657B0",
@@ -230,7 +230,7 @@ Array [
 ]
 `;
 
-exports[`citation processor generates bibliography: citations-http://www.zotero.org/styles/plos 1`] = `
+exports[`CitationProvider generates bibliography: citations-http://www.zotero.org/styles/plos 1`] = `
 Array [
   Array [
     "MPCitation:31E42852-8377-4550-8C25-9E602EE657B0",
@@ -245,7 +245,7 @@ Array [
 ]
 `;
 
-exports[`citation processor generates bibliography: citations-http://www.zotero.org/styles/science 1`] = `
+exports[`CitationProvider generates bibliography: citations-http://www.zotero.org/styles/science 1`] = `
 Array [
   Array [
     "MPCitation:31E42852-8377-4550-8C25-9E602EE657B0",

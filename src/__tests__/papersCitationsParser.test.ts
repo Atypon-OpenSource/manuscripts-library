@@ -17,7 +17,7 @@
 import fs from 'fs'
 import path from 'path'
 
-import { parse } from '../papers-citations'
+import { papersCitationsParser } from '../csl-parser'
 
 const FIXTURES_DIR = path.join(
   __dirname,
@@ -26,7 +26,7 @@ const FIXTURES_DIR = path.join(
   'papers-citations-xml'
 )
 
-describe('Papers Citations XML parser', () => {
+describe('papersCitationsParser XML parser', () => {
   it('should parse all fixtures to CSL JSON correctly', async () => {
     const fixtures = await fs.promises.readdir(FIXTURES_DIR)
 
@@ -35,7 +35,7 @@ describe('Papers Citations XML parser', () => {
         path.join(FIXTURES_DIR, file),
         'utf-8'
       )
-      expect(parse(xml)).toMatchSnapshot()
+      expect(papersCitationsParser(xml)).toMatchSnapshot()
     }
   })
 })

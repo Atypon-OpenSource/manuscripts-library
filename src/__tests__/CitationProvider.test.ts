@@ -16,19 +16,19 @@
 
 // @ts-ignore
 import { data } from '@manuscripts/examples/data/project-dump-2.json'
-import { Decoder, findManuscript } from '@manuscripts/manuscript-transform'
-import { BibliographyItem, Model } from '@manuscripts/manuscripts-json-schema'
-
-import { createProcessor, loadStyle } from '../citation-processor'
+import { Decoder } from '@manuscripts/manuscript-transform'
 import {
-  buildCitationNodes,
-  buildCitations,
-  GetLibraryItem,
-  GetManuscript,
-  GetModel,
-} from '../citations'
+  BibliographyItem,
+  Bundle,
+  Model,
+  ObjectTypes,
+} from '@manuscripts/manuscripts-json-schema'
 
-describe('citation processor', () => {
+import { buildCitationNodes, buildCitations } from '../citation-builder'
+import { CitationProvider } from '../CitationProvider'
+import { loadCitationStyle } from '../csl-styles'
+
+describe('CitationProvider', () => {
   test('generates bibliography', async () => {
     const modelMap: Map<string, Model> = new Map()
 
@@ -36,14 +36,11 @@ describe('citation processor', () => {
       modelMap.set(item._id, (item as unknown) as Model)
     }
 
-    const getModel: GetModel = <T extends Model>(id: string) =>
+    const getModel = <T extends Model>(id: string) =>
       modelMap.get(id) as T | undefined
 
-    const getLibraryItem: GetLibraryItem = (id: string) =>
+    const getLibraryItem = (id: string) =>
       modelMap.get(id) as BibliographyItem | undefined
-
-    const manuscript = findManuscript(modelMap)
-    const getManuscript: GetManuscript = () => manuscript
 
     const cslIdentifiers = [
       'http://www.zotero.org/styles/nature',
@@ -56,22 +53,20 @@ describe('citation processor', () => {
     ]
 
     for (const cslIdentifier of cslIdentifiers) {
-      // const bundle: Bundle = {
-      //   _id: 'MPBundle:test',
-      //   objectType: ObjectTypes.Bundle,
-      //   createdAt: 0,
-      //   updatedAt: 0,
-      //   csl: { cslIdentifier },
-      // }
-      //
-      // const citationProcessor = await createProcessor('en-GB', getLibraryItem, {
-      //   bundle,
-      // })
+      const bundle: Bundle = {
+        _id: 'MPBundle:test',
+        objectType: ObjectTypes.Bundle,
+        createdAt: 0,
+        updatedAt: 0,
+        csl: { cslIdentifier },
+      }
 
-      const citationStyleData = await loadStyle(cslIdentifier)
+      const citationStyle = await loadCitationStyle({ bundle })
 
-      const citationProcessor = await createProcessor('en-GB', getLibraryItem, {
-        citationStyleData,
+      const citationProvider = new CitationProvider({
+        lang: 'en-GB',
+        citationStyle,
+        getLibraryItem,
       })
 
       const decoder = new Decoder(modelMap)
@@ -80,13 +75,9 @@ describe('citation processor', () => {
 
       const citationNodes = buildCitationNodes(article, getModel)
 
-      const citations = buildCitations(
-        citationNodes,
-        getLibraryItem,
-        getManuscript
-      )
+      const citations = buildCitations(citationNodes, getLibraryItem)
 
-      const generatedCitations = citationProcessor.rebuildProcessorState(
+      const generatedCitations = citationProvider.rebuildProcessorState(
         citations
       )
 
@@ -100,7 +91,7 @@ describe('citation processor', () => {
       const [
         bibmeta,
         generatedBibliographyItems,
-      ] = citationProcessor.makeBibliography()
+      ] = citationProvider.makeBibliography()
 
       expect(bibmeta.bibliography_errors).toHaveLength(0)
 

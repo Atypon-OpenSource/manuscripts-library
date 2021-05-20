@@ -718,10 +718,10 @@
   resolved "https://registry.yarnpkg.com/@manuscripts/examples/-/examples-0.0.7.tgz#f7f0cef173fb2c83fbf283a2c2962b5d6ea32874"
   integrity sha512-7a1y6H/wnvn4hTh7S+TEyC8R5tLHHNiWYJnbeS43JCMYS/6qhMCzJTS0PwQynoep7PWwi2LdgaSZ3qALxzgg0g==
 
-"@manuscripts/manuscript-transform@^0.42.8":
-  version "0.42.8"
-  resolved "https://registry.npmjs.org/@manuscripts/manuscript-transform/-/manuscript-transform-0.42.8.tgz#d83f599dd49ebe45a55242b15472a9ab6dd82521"
-  integrity sha512-N26lbWJyECUFsh2m8bPjFxZnrliYlA96aS77ktTqtBXA7LXdvbkvnMF9Pf9Zna7zB3j9SP6jd93hD6GdmcnMFg==
+"@manuscripts/manuscript-transform@^0.42.12":
+  version "0.42.12"
+  resolved "https://registry.yarnpkg.com/@manuscripts/manuscript-transform/-/manuscript-transform-0.42.12.tgz#5e0d7200a70ee58f8571ecc16f8de06bda519f33"
+  integrity sha512-bg3xL6yHgohSFtuI6N/oghl19NTDqQ33Tl+bikk/S5nYENmzO/rO4fim20VCbBl9zo+p74jGf2aaJxou9clYaw==
   dependencies:
     "@manuscripts/data" "^0.1.3"
     "@manuscripts/manuscripts-json-schema" "^1.46.2"
@@ -737,6 +737,15 @@
   version "1.46.2"
   resolved "https://registry.npmjs.org/@manuscripts/manuscripts-json-schema/-/manuscripts-json-schema-1.46.2.tgz#fac4be683e5301e56dbba1600691e7d617198fb3"
   integrity sha512-TDMONHRO0grvkx+DcBTlWg9bXpsZMfW6VbHDdC5d8vsjAdIlXzYHARi7H35I5oCoFuJwiWDQ/rJsJC1c7t5jyQ==
+  dependencies:
+    ajv "^6.10.0"
+    deepmerge "^3.2.0"
+    js-beautify "^1.9.0"
+
+"@manuscripts/manuscripts-json-schema@^1.46.2":
+  version "1.46.5"
+  resolved "https://registry.yarnpkg.com/@manuscripts/manuscripts-json-schema/-/manuscripts-json-schema-1.46.5.tgz#e16ec00230353644221eaa433d9781488d5f3f82"
+  integrity sha512-lmqLxtRPe0J7ZvP8GEdoZ/C7P77ZmJbynp0CQfypxTPk7HkBl71EtNdtmPRcO7dk+rs9ouTh7NMOgcFkvJ8JuA==
   dependencies:
     ajv "^6.10.0"
     deepmerge "^3.2.0"
@@ -988,10 +997,10 @@
   resolved "https://registry.yarnpkg.com/@types/prettier/-/prettier-2.0.2.tgz#5bb52ee68d0f8efa9cc0099920e56be6cc4e37f3"
   integrity sha512-IkVfat549ggtkZUthUzEX49562eGikhSYeVGX97SkMFn+sTZrgRewXjQ4tPKFPCykZHkX1Zfd9OoELGqKU2jJA==
 
-"@types/prosemirror-model@^1.11.1":
-  version "1.11.1"
-  resolved "https://registry.yarnpkg.com/@types/prosemirror-model/-/prosemirror-model-1.11.1.tgz#f1258bfe8d6f2fb68a2f95b3af57e18e5868cbab"
-  integrity sha512-sAue1p9V/JjATX1JzQDFzW2ON8QEGUz3eMSpJX94oCr0CoAQgK4/kSM2funtQKy1GHd+xr7wZ509ykt49b+T1Q==
+"@types/prosemirror-model@~1.13.0":
+  version "1.13.0"
+  resolved "https://registry.yarnpkg.com/@types/prosemirror-model/-/prosemirror-model-1.13.0.tgz#d05937e918c3cac2cf49630ccab04a65fc5fffd6"
+  integrity sha512-EIUr2R38Zh9n1eA8BQ1C3NX/XLV9U44DhNVk8x3Sth2RW+wa7jNA82XHMPOoapsOTfmpnh32xaHBOzREiBqdPQ==
   dependencies:
     "@types/orderedmap" "*"
 
@@ -2599,12 +2608,12 @@ flatted@^2.0.0:
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-2.0.2.tgz#4575b21e2bcee7434aa9be662f4b7b5f9c2b5138"
   integrity sha512-r5wGx7YeOwNWNlCA0wQ86zKyDLMQr+/RB8xy74M4hTphfmjlijTSSXGuH8rnvKZnfT9i+75zmd8jcKdMR4O6jA==
 
-fontoxpath@^3.14.0:
-  version "3.14.0"
-  resolved "https://registry.yarnpkg.com/fontoxpath/-/fontoxpath-3.14.0.tgz#977edb7ee2cd8830688840b8ca74ecccc61375ea"
-  integrity sha512-t6PqPz6oKGfQw+RVDwQ4MRqYkD/QXLRiBEafKaZ0V+e+jPtQpjMhpUFgW7eZkoRxN3IpYPiZLSeNzH07TEf7nw==
+fontoxpath@^3.17.2:
+  version "3.17.2"
+  resolved "https://registry.yarnpkg.com/fontoxpath/-/fontoxpath-3.17.2.tgz#0312db0f3cdf675269d5cdca7221997f64859d7b"
+  integrity sha512-+Lm7dHifsp+t+kA1NLCZLUPzxqKJ6uy0IljdVS+tMpoQNiSlttr7e/Cfg9DwgvQL7HWzTT7I54vxCPSAiQkzYw==
   dependencies:
-    xspattern "^1.2.1"
+    xspattern "^2.0.0"
 
 for-in@^1.0.2:
   version "1.0.2"
@@ -4559,9 +4568,9 @@ prop-types@^15.7.2:
     react-is "^16.8.1"
 
 prosemirror-model@~1.14.0:
-  version "1.14.0"
-  resolved "https://registry.npmjs.org/prosemirror-model/-/prosemirror-model-1.14.0.tgz#44042a16942dfc5dcd79daf6ec37b0efcfef53c8"
-  integrity sha512-+9J7YE2qD2lsRgaI5aF7u6LynBoHxb/8sW1gaMKRAhK+yeQ+motBIaxb2GxRWSadDWMOq5haAImSTBo6jDkv2A==
+  version "1.14.1"
+  resolved "https://registry.yarnpkg.com/prosemirror-model/-/prosemirror-model-1.14.1.tgz#d784c67f95a5d66b853e82ff9a87a50353ef9cd5"
+  integrity sha512-vZcbI+24VloFefKZkDnMaEpipL/vSKKPdFiik4KOnTzq3e6AO7+CAOixZ2G/SsfRaYC965XvnOIEbhIQdgki7w==
   dependencies:
     orderedmap "^1.1.0"
 
@@ -4570,10 +4579,10 @@ proto-list@~1.2.1:
   resolved "https://registry.yarnpkg.com/proto-list/-/proto-list-1.2.4.tgz#212d5bfe1318306a420f6402b8e26ff39647a849"
   integrity sha1-IS1b/hMYMGpCD2QCuOJv85ZHqEk=
 
-prsc@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/prsc/-/prsc-1.1.0.tgz#868f26c18a1dca3e94bf8446d0544af983901808"
-  integrity sha512-sNn5XUwyMA9dbF5l23ksu2+MsOKf+Ihuae0T88GMABgsKiPA1oLME3qdlrkPxyVVK6wFhO7VSKNuSyZrCYQrOg==
+prsc@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/prsc/-/prsc-2.0.1.tgz#7b30cc33338b7625381c6ac5a0578bbce937b4c1"
+  integrity sha512-SC6yOsjsSRxPVo/3M6tMykFLCAWvzpCASNbHhkpXQX9expqWJ+GlrarhvF55OX0XwN2U/+b1vKPrhjrdT68dyw==
 
 pseudomap@^1.0.2:
   version "1.0.2"
@@ -5807,10 +5816,10 @@ which@^2.0.1, which@^2.0.2:
   dependencies:
     isexe "^2.0.0"
 
-whynot@^3.0.3:
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/whynot/-/whynot-3.0.3.tgz#56abf3e0e2e54f5550cebcc952ddf5b38e38f136"
-  integrity sha512-CyFCWOprdyBdUPoHCE7WIVH5lBqv2QHz2+WID/JaelCurmyn/wQ71O6wmJbX657HcLJfABKMRtsPp4XuzDO6Jw==
+whynot@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/whynot/-/whynot-4.0.0.tgz#d337ffc8b5f93daa317fec727d688a88ebc3fcf1"
+  integrity sha512-dnIPzjyDaTu1Yjv7koEu0cxKx7Zq9ZuXM7bO3ZvG5PNgFuMp7+E4+ZkVUo4Ei73Zixwu04ahOf58SPcH+KA4oQ==
 
 wicked-good-xpath@^1.3.0:
   version "1.3.0"
@@ -5887,13 +5896,13 @@ xmldom-sre@^0.1.31:
   resolved "https://registry.yarnpkg.com/xmldom-sre/-/xmldom-sre-0.1.31.tgz#10860d5bab2c603144597d04bf2c4980e98067f4"
   integrity sha512-f9s+fUkX04BxQf+7mMWAp5zk61pciie+fFLC9hX9UVvCeJQfNHRHXpeo5MPcR0EUf57PYLdt+ZO4f3Ipk2oZUw==
 
-xspattern@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/xspattern/-/xspattern-1.2.1.tgz#0a5cc1192b3746543eb8dd988c3b80f0085917ac"
-  integrity sha512-fkM2XB5N8MOCQiEW2ITa8XIKKjqbNlFTOiqT9zKMPr7jMsBe1jIBq+E5HCm1c4kmgFRWqpVGyLloTQ/y1pW+Yg==
+xspattern@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/xspattern/-/xspattern-2.0.0.tgz#900b35cd756aa7e27dab0e9a0682af855a6cd404"
+  integrity sha512-qLm7YxG2BV0GFYO9+PaILaTeYLFb72nRNkfYJBGvgMC6q8w8OXElNqMsYBlZGUlPUiUzk6edId7FWj+EZ2ltSQ==
   dependencies:
-    prsc "^1.1.0"
-    whynot "^3.0.3"
+    prsc "^2.0.1"
+    whynot "^4.0.0"
 
 xtend@^4.0.0, xtend@^4.0.1:
   version "4.0.2"

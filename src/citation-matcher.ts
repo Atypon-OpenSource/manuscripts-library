@@ -16,54 +16,6 @@
 
 import { BibliographyItem } from '@manuscripts/manuscripts-json-schema'
 
-import { convertDataToBibliographyItem } from './convert'
-
-const chooseParser = (format: string) => {
-  format = format.replace(/^application\/(x-)?/, '')
-
-  switch (format) {
-    case '.bib':
-    case 'bibtex':
-      return import('astrocite-bibtex')
-
-    case '.ris':
-    case 'research-info-systems':
-      return import('astrocite-ris')
-
-    case 'papers-citations-xml':
-      return import('./papers-citations')
-
-    case 'citeproc+json':
-      return Promise.resolve({
-        parse: JSON.parse,
-      })
-
-    default:
-      throw new Error(`Unknown citation format ${format}`)
-  }
-}
-
-const validRISLine = /^(\w{2}\s{2}-\s.+|ER\s{2}-\s*)$/
-
-export const transformBibliography = async (
-  data: string,
-  extension: string
-): Promise<Array<Partial<BibliographyItem>>> => {
-  const { parse } = await chooseParser(extension)
-
-  if (extension === '.ris') {
-    // remove invalid lines
-    data = data
-      .split(/[\n\r]+/)
-      .filter((line) => validRISLine.test(line))
-      .join('\n')
-  }
-
-  const items = parse(data) as CSL.Data[]
-
-  return items.map(convertDataToBibliographyItem)
-}
-
 export const matchLibraryItemByIdentifier = (
   item: BibliographyItem,
   library: Map<string, BibliographyItem>

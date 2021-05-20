@@ -23,18 +23,16 @@ const createLink = (url: string, contents: string): Element => {
   const element = document.createElement('a')
   element.setAttribute('href', url)
   element.innerHTML = contents // IMPORTANT: this is HTML so must be sanitised later
-
   return element
 }
 
 const createSpan = (contents: string): Element => {
   const element = document.createElement('span')
   element.innerHTML = contents // IMPORTANT: this is HTML so must be sanitised later
-
   return element
 }
 
-const wrapVariable = (
+export const wrapVariable = (
   field: string,
   itemData: CSL.Data,
   str: string
@@ -44,20 +42,15 @@ const wrapVariable = (
       if (itemData.DOI) {
         return createLink(createDoiUrl(itemData.DOI), str)
       }
-
       if (itemData.URL) {
         return createLink(itemData.URL, str)
       }
-
       return createSpan(str)
     }
-
     case 'URL':
       return createLink(str, str)
-
     case 'DOI':
       return createLink(createDoiUrl(str), str)
-
     default:
       return createSpan(str)
   }
@@ -71,13 +64,9 @@ export const variableWrapper: CiteProc.VariableWrapper = (
 ) => {
   if (params.context === 'bibliography') {
     const fields = params.variableNames.join(' ')
-
     const element = wrapVariable(fields, params.itemData, str)
-
     element.setAttribute('data-field', fields)
-
     return `${prePunct}${element.outerHTML}${postPunct}`
   }
-
   return `${prePunct}${str}${postPunct}`
 }

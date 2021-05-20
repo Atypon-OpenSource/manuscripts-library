@@ -16,16 +16,16 @@
 
 import fs from 'fs'
 
-import { transformBibliography } from '../bibliography'
+import { parseBibliography } from '../csl-parser'
 
-describe('importer', () => {
+describe('csl-parser', () => {
   test('imports a BibTeX file', async () => {
     const data = fs.readFileSync(
       __dirname + '/../__fixtures__/lens-export.bib',
       'utf8'
     )
 
-    const response = await transformBibliography(data, '.bib')
+    const response = await parseBibliography(data, '.bib')
 
     expect(response).toHaveLength(72)
 
@@ -47,7 +47,7 @@ describe('importer', () => {
       'utf8'
     )
 
-    const response = await transformBibliography(data, '.ris')
+    const response = await parseBibliography(data, '.ris')
 
     expect(response).toHaveLength(41)
 
@@ -71,7 +71,7 @@ describe('importer', () => {
 
     expect(data).toMatch(/\r/)
 
-    const response = await transformBibliography(data, '.ris')
+    const response = await parseBibliography(data, '.ris')
 
     expect(response).toHaveLength(1)
 
@@ -99,7 +99,7 @@ L3  - https://www.nature.com/articles/nature12914#supplementary-information
 ER  -
 `
 
-    const response = await transformBibliography(data, '.ris')
+    const response = await parseBibliography(data, '.ris')
 
     expect(response).toHaveLength(1)
 

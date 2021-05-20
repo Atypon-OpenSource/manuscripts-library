@@ -17,9 +17,9 @@
 import { schema } from '@manuscripts/manuscript-transform'
 import { Node } from 'prosemirror-model'
 
-import { bibliographyElementContents } from '../citations'
+import { createBibliographyElementContents } from '../citation-builder'
 
-describe('bibliography', () => {
+describe('citation-builder', () => {
   test('generates bibliography element contents', () => {
     const node = Node.fromJSON(schema, {
       type: 'bibliography_element',
@@ -30,9 +30,13 @@ describe('bibliography', () => {
 
     const items: string[] = ['1.foo', '2. bar', '3. baz']
 
-    const result = bibliographyElementContents(node, id, items)
+    const result = createBibliographyElementContents(
+      items,
+      id,
+      node.attrs.placeholder
+    )
 
-    expect(result).toBe(
+    expect(result.outerHTML).toBe(
       `<div class="csl-bib-body" id="MPBibliographyElement:1">1.foo\n2. bar\n3. baz</div>`
     )
   })
@@ -47,9 +51,13 @@ describe('bibliography', () => {
 
     const items: string[] = []
 
-    const result = bibliographyElementContents(node, id, items)
+    const result = createBibliographyElementContents(
+      items,
+      id,
+      node.attrs.placeholder
+    )
 
-    expect(result).toBe(
+    expect(result.outerHTML).toBe(
       `<div class="csl-bib-body empty-node" id="MPBibliographyElement:1" data-placeholder="Citations inserted to the manuscript will be formatted here as a bibliography."></div>`
     )
   })

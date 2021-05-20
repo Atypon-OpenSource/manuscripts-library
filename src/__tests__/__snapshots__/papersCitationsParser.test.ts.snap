@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Papers Citations XML parser should parse all fixtures to CSL JSON correctly 1`] = `
+exports[`papersCitationsParser XML parser should parse all fixtures to CSL JSON correctly 1`] = `
 Array [
   Object {
     "DOI": "10.1186/1472-6920-9-27",
@@ -43,7 +43,7 @@ Array [
 ]
 `;
 
-exports[`Papers Citations XML parser should parse all fixtures to CSL JSON correctly 2`] = `
+exports[`papersCitationsParser XML parser should parse all fixtures to CSL JSON correctly 2`] = `
 Array [
   Object {
     "DOI": "10.1103/PhysRevLett.64.705",
@@ -74,7 +74,7 @@ Array [
 ]
 `;
 
-exports[`Papers Citations XML parser should parse all fixtures to CSL JSON correctly 3`] = `
+exports[`papersCitationsParser XML parser should parse all fixtures to CSL JSON correctly 3`] = `
 Array [
   Object {
     "URL": "http://books.google.cz/books?id=pjVHjNPdKqoC&pg=PR20&dq=example&hl=&cd=23&source=gbs_api",
@@ -101,7 +101,7 @@ Array [
 ]
 `;
 
-exports[`Papers Citations XML parser should parse all fixtures to CSL JSON correctly 4`] = `
+exports[`papersCitationsParser XML parser should parse all fixtures to CSL JSON correctly 4`] = `
 Array [
   Object {
     "URL": "http://books.google.cz/books?id=XYU5R9Win1UC&pg=PA47&dq=example&hl=&cd=30&source=gbs_api",
@@ -126,7 +126,7 @@ Array [
 ]
 `;
 
-exports[`Papers Citations XML parser should parse all fixtures to CSL JSON correctly 5`] = `
+exports[`papersCitationsParser XML parser should parse all fixtures to CSL JSON correctly 5`] = `
 Array [
   Object {
     "DOI": "10.1201/9781482287103",
@@ -154,7 +154,7 @@ Array [
 ]
 `;
 
-exports[`Papers Citations XML parser should parse all fixtures to CSL JSON correctly 6`] = `
+exports[`papersCitationsParser XML parser should parse all fixtures to CSL JSON correctly 6`] = `
 Array [
   Object {
     "DOI": "10.1186/1472-6920-9-27",
