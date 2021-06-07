@@ -71,9 +71,42 @@ declare module 'citeproc' {
 
     public updateUncitedItems(idList: Array<string | number>): void
 
+    /**
+     * Rebuilds the processor from scratch, based on a cached list of
+     * citation objects. In a dynamic application, once the internal state of
+     * processor is established, citations should edited with individual
+     * invocations of ``processCitationCluster()``.
+     *
+     * Returns an array of ``[citationID,noteIndex,string]`` triples in
+     * document order, where ``string`` is the fully disambiguated citation
+     * cluster for the given document position.
+     *
+     * @param citations An array of citation input objects in document order. Each 
+     * citation object must be in the following form, with correct
+     * values for ``citationID``, for each ``id``, and for ``noteIndex``.
+     * Set ``noteIndex`` to ``0`` for in-text citations.
+     * Default is to return an empty document update array.
+     * ```json
+     * {
+     *   "citationID": "CITATION-1",
+     *   "citationItems": [
+     *     {
+     *         "id": "ITEM-1"
+     *     }
+     *   ],
+     *   "properties": {
+     *     "noteIndex": 1
+     *   }
+     * }
+     * ```
+     * @param mode One of ``text``, ``html`` or ``rtf``. The default is ``html``.
+       After invocation, the processor is returned to its previous output mode setting.
+     * @param uncitedItemIDs An array of item IDs for uncited items to be included in
+       the document bibliography, if any.
+     */
     public rebuildProcessorState(
       citations: Citation[],
-      mode?: string,
+      mode?: 'text' | 'html' | 'rtf',
       uncitedItemIDs?: string[]
     ): Array<[string, number, string]> // id, noteIndex, output
 

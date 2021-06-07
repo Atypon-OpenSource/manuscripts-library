@@ -66,7 +66,7 @@ export class CitationProvider {
 
   public rebuildProcessorState(
     citations: CiteProcCitation[],
-    mode?: string,
+    mode?: 'text' | 'html' | 'rtf',
     uncitedItemIDs?: string[]
   ): Array<[string, number, string]> {
     // id, noteIndex, output
