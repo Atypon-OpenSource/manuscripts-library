@@ -24,9 +24,7 @@
     "version": "yarn build"
   },
   "dependencies": {
-    "@manuscripts/csl-locales": "^0.0.5",
-    "@manuscripts/csl-styles": "^0.2.1",
-    "@manuscripts/data": "^0.1.2",
+    "@manuscripts/data": "^0.1.11",
     "@manuscripts/manuscript-transform": "^0.42.12",
     "astrocite-bibtex": "^0.16.4",
     "astrocite-ris": "^0.16.4",
