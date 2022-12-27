@@ -1,7 +1,7 @@
 {
   "name": "@manuscripts/library",
   "version": "0.6.3",
-  "repository": "gitlab:mpapp-public/manuscripts-library",
+  "repository": "github:Atypon-OpenSource/manuscripts-library",
   "license": "Apache-2.0",
   "main": "dist/cjs",
   "module": "dist/es",
