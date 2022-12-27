@@ -23,8 +23,17 @@ import {
   BibliographicName,
   BibliographyItem,
 } from '@manuscripts/manuscripts-json-schema'
+import {
+  Data,
+  Date,
+  DateFieldKey,
+  NumberFieldKey,
+  Person,
+  PersonFieldKey,
+  StringFieldKey,
+} from 'csl-json'
 
-const personFields: Array<CSL.PersonFieldKey> = [
+const personFields: Array<PersonFieldKey> = [
   'author',
   'collection-editor',
   'composer',
@@ -40,7 +49,7 @@ const personFields: Array<CSL.PersonFieldKey> = [
   'translator',
 ]
 
-const dateFields: Array<CSL.DateFieldKey> = [
+const dateFields: Array<DateFieldKey> = [
   'accessed',
   'container',
   'event-date',
@@ -49,7 +58,7 @@ const dateFields: Array<CSL.DateFieldKey> = [
   'submitted',
 ]
 
-const stringFields: Array<CSL.StringFieldKey> = [
+const stringFields: Array<StringFieldKey> = [
   'abstract',
   'annote',
   'archive',
@@ -110,7 +119,7 @@ const stringFields: Array<CSL.StringFieldKey> = [
   'year-suffix',
 ]
 
-const numberFields: Array<CSL.NumberFieldKey> = [
+const numberFields: Array<NumberFieldKey> = [
   'chapter-number',
   // 'citation-number',
   'collection-number',
@@ -122,20 +131,20 @@ const numberFields: Array<CSL.NumberFieldKey> = [
   'volume',
 ]
 
-const isNumberFieldKey = (key: string): key is CSL.NumberFieldKey =>
-  numberFields.includes(key as CSL.NumberFieldKey)
+const isNumberFieldKey = (key: string): key is NumberFieldKey =>
+  numberFields.includes(key as NumberFieldKey)
 
-const isStringFieldKey = (key: string): key is CSL.StringFieldKey =>
-  stringFields.includes(key as CSL.StringFieldKey)
+const isStringFieldKey = (key: string): key is StringFieldKey =>
+  stringFields.includes(key as StringFieldKey)
 
-const isPersonFieldKey = (key: string): key is CSL.PersonFieldKey =>
-  personFields.includes(key as CSL.PersonFieldKey)
+const isPersonFieldKey = (key: string): key is PersonFieldKey =>
+  personFields.includes(key as PersonFieldKey)
 
-const isDateFieldKey = (key: string): key is CSL.DateFieldKey =>
-  dateFields.includes(key as CSL.DateFieldKey)
+const isDateFieldKey = (key: string): key is DateFieldKey =>
+  dateFields.includes(key as DateFieldKey)
 
 export const convertCSLToBibliographyItem = (
-  data: CSL.Data
+  data: Data
 ): Partial<BibliographyItem> => {
   // const output: { [key in keyof BibliographyItem]: BibliographyItem[key] } = {}
 
@@ -149,10 +158,9 @@ export const convertCSLToBibliographyItem = (
       // @ts-ignore TODO
       output[key] = Number.isInteger(item) ? item : String(item)
     } else if (isStringFieldKey(key)) {
-      // @ts-ignore TODO
       output[key] = String(item)
     } else if (isPersonFieldKey(key)) {
-      output[key] = (item as CSL.Person[]).map(buildBibliographicName)
+      output[key] = (item as Person[]).map(buildBibliographicName)
     } else if (isDateFieldKey(key)) {
       output[key] = buildBibliographicDate(item as Partial<BibliographicDate>)
     }
@@ -163,7 +171,7 @@ export const convertCSLToBibliographyItem = (
 
 export const convertBibliographyItemToCSL = (
   bibliographyItem: BibliographyItem
-): CSL.Data =>
+): Data =>
   Object.entries(bibliographyItem).reduce(
     (output, [key, item]) => {
       if (isNumberFieldKey(key)) {
@@ -175,11 +183,11 @@ export const convertBibliographyItemToCSL = (
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
           const { _id, objectType, ...rest } = name
           return rest
-        }) as CSL.Person[]
+        }) as Person[]
       } else if (isDateFieldKey(key)) {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { _id, objectType, ...rest } = item as BibliographicDate
-        output[key] = rest as CSL.Date
+        output[key] = rest as Date
       }
 
       return output
@@ -187,15 +195,15 @@ export const convertBibliographyItemToCSL = (
     {
       id: bibliographyItem._id,
       type: bibliographyItem.type || 'article-journal',
-    } as CSL.Data
+    } as Data
   )
 
-export const fixCSLData = (item: CSL.Data): CSL.Data => {
+export const fixCSLData = (item: Data): Data => {
   // ensure that string fields don't contain arrays
   stringFields.forEach((key) => {
     if (key in item) {
       if (Array.isArray(item[key])) {
-        const [data] = (item[key] as unknown) as string[]
+        const [data] = item[key] as unknown as string[]
         item[key] = data || undefined
       }
     }

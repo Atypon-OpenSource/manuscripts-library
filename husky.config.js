@@ -15,6 +15,6 @@
  */
 module.exports = {
   hooks: {
-    'pre-push': "concurrently 'yarn:typecheck' 'yarn:lint'",
+    'pre-push': 'npm-run-all --parallel lint typecheck',
   },
 }

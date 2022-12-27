@@ -14,11 +14,9 @@
  * limitations under the License.
  */
 module.exports = {
-  env: {
-    test: {
-      plugins: ['dynamic-import-node', '@babel/transform-modules-commonjs'],
-    },
-  },
-  plugins: [],
-  presets: ['@babel/preset-typescript'],
+  presets: [
+    '@babel/preset-env',
+    '@babel/preset-react',
+    '@babel/preset-typescript',
+  ],
 }
