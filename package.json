@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "@manuscripts/data": "^0.1.12",
-    "@manuscripts/manuscript-transform": "^0.63.0",
+    "@manuscripts/manuscript-transform": "../manuscripts-manuscript-transform",
     "astrocite-bibtex": "^0.16.4",
     "astrocite-ris": "^0.16.4",
     "citeproc": "^2.4.62",
@@ -65,8 +65,5 @@
     "prosemirror-model": "~1.18.3",
     "rimraf": "^3.0.2",
     "typescript": "^4.0.5"
-  },
-  "resolutions": {
-    "prosemirror-model": "~1.18.3"
   }
 }

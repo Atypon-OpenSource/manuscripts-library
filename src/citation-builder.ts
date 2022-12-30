@@ -25,6 +25,7 @@ import type {
   Model,
 } from '@manuscripts/manuscripts-json-schema'
 import CiteProc from 'citeproc'
+import { Node } from 'prosemirror-model'
 
 import type { CitationNodes } from './types'
 
