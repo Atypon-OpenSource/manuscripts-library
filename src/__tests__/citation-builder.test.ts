@@ -58,7 +58,7 @@ describe('citation-builder', () => {
     )
 
     expect(result.outerHTML).toBe(
-      `<div class="csl-bib-body empty-node" id="MPBibliographyElement:1" data-placeholder="Citations inserted to the manuscript will be formatted here as a bibliography."></div>`
+      `<div class="csl-bib-body empty-node" id="MPBibliographyElement:1"></div>`
     )
   })
 })

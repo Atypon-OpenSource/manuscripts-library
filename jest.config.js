@@ -17,7 +17,13 @@ module.exports = {
   moduleFileExtensions: ['ts', 'tsx', 'js', 'json'],
   testPathIgnorePatterns: ['/node_modules/', '<rootDir>/dist/'],
   testRegex: '__tests__.*\\.test\\.tsx?$',
-  transformIgnorePatterns: [
-    '<rootDir>/node_modules/(?!(lodash-es|@manuscripts)/)',
-  ],
+  transform: {
+    '^.+\\.(j|t)sx?$': 'babel-jest',
+  },
+  transformIgnorePatterns: ['<rootDir>/node_modules/(?!(lodash-es|@manuscripts|uuid)/)'],
+  testEnvironment: 'jsdom',
+  snapshotFormat: {
+    printBasicPrototype: true,
+    escapeString: true
+  }
 }

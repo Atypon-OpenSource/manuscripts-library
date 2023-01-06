@@ -25,6 +25,7 @@ import type {
   Model,
 } from '@manuscripts/manuscripts-json-schema'
 import CiteProc from 'citeproc'
+import { Node } from 'prosemirror-model'
 
 import type { CitationNodes } from './types'
 
@@ -34,7 +35,7 @@ export const buildCitationNodes = (
 ): CitationNodes => {
   const citationNodes: CitationNodes = []
 
-  doc.descendants((node, pos) => {
+  doc.descendants((node: Node, pos: number) => {
     if (isCitationNode(node)) {
       const citation = getModel<Citation>(node.attrs.rid)
 
