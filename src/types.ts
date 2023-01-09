@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import type { CitationNode } from '@manuscripts/manuscript-transform'
-import type { Citation } from '@manuscripts/manuscripts-json-schema'
+import type { Citation } from '@manuscripts/json-schema'
+import type { CitationNode } from '@manuscripts/transform'
 
 export type CitationNodes = Array<[CitationNode, number, Citation]>

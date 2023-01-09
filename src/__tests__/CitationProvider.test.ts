@@ -16,13 +16,13 @@
 
 // @ts-ignore
 import { data } from '@manuscripts/examples/data/project-dump-2.json'
-import { Decoder } from '@manuscripts/manuscript-transform'
 import {
   BibliographyItem,
   Bundle,
   Model,
   ObjectTypes,
-} from '@manuscripts/manuscripts-json-schema'
+} from '@manuscripts/json-schema'
+import { Decoder } from '@manuscripts/transform'
 
 import { buildCitationNodes, buildCitations } from '../citation-builder'
 import { CitationProvider } from '../CitationProvider'

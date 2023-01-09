@@ -14,10 +14,7 @@
  * limitations under the License.
  */
 
-import {
-  BibliographyItem,
-  ObjectTypes,
-} from '@manuscripts/manuscripts-json-schema'
+import { BibliographyItem, ObjectTypes } from '@manuscripts/json-schema'
 
 import {
   convertBibliographyItemToCSL,

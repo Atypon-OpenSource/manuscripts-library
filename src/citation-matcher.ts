@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { BibliographyItem } from '@manuscripts/manuscripts-json-schema'
+import { BibliographyItem } from '@manuscripts/json-schema'
 
 export const matchLibraryItemByIdentifier = (
   item: BibliographyItem,

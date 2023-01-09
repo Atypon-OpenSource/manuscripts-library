@@ -14,16 +14,13 @@
  * limitations under the License.
  */
 
-import {
-  isCitationNode,
-  ManuscriptNode,
-} from '@manuscripts/manuscript-transform'
 import type {
   BibliographyItem,
   Citation,
   CitationItem,
   Model,
-} from '@manuscripts/manuscripts-json-schema'
+} from '@manuscripts/json-schema'
+import { isCitationNode, ManuscriptNode } from '@manuscripts/transform'
 import CiteProc from 'citeproc'
 import { Node } from 'prosemirror-model'
 

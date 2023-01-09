@@ -15,14 +15,14 @@
  */
 
 import {
-  buildBibliographicDate,
-  buildBibliographicName,
-} from '@manuscripts/manuscript-transform'
-import {
   BibliographicDate,
   BibliographicName,
   BibliographyItem,
-} from '@manuscripts/manuscripts-json-schema'
+} from '@manuscripts/json-schema'
+import {
+  buildBibliographicDate,
+  buildBibliographicName,
+} from '@manuscripts/transform'
 import {
   Data,
   Date,

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { BibliographyItem } from '@manuscripts/manuscripts-json-schema'
+import { BibliographyItem } from '@manuscripts/json-schema'
 import { evaluateXPathToString } from 'fontoxpath'
 
 import { convertCSLToBibliographyItem } from './csl-converter'

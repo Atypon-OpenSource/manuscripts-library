@@ -1308,21 +1308,25 @@
   resolved "https://registry.yarnpkg.com/@manuscripts/examples/-/examples-0.1.0.tgz#249c842a4a63185fecf35077a895991b8d84ce6a"
   integrity sha512-C/OHc6+vcDZAM8EaPArbMLGCBMudHwxkHgogIEoxYGZL/tkqC/hGDx+eWQSHsZUAHiDyCM3ca3d1a+cuGvId8g==
 
-"@manuscripts/manuscript-transform@../manuscripts-manuscript-transform":
+"@manuscripts/json-schema@^1.0.0":
   version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@manuscripts/json-schema/-/json-schema-1.0.0.tgz#26ff4fea70c74d64f83a7e7361f1b5036de84a5d"
+  integrity sha512-2514pjCDqPLLisy0xL/H6Y1vPTesZYHkw7SQa5Cuehx57CmLk3NAxFI3EJkLIFslJDNJes886+U+TLwHGMxrCg==
+  dependencies:
+    ajv "^6.10.0"
+    deepmerge "^4.2.2"
+    js-beautify "^1.14.7"
+
+"@manuscripts/transform@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@manuscripts/transform/-/transform-1.0.1.tgz#1eccad9924beef97a5b6ae9e944ca9704f09b2a7"
+  integrity sha512-cI89dy3vY2+81TjiHRE6cxK4EDJbI21np0ueUeZGK+8wA4/8+QVh0pj1qdt+ZCiSV2XYh7epXQV9WAwajTYQ1g==
   dependencies:
     debug "^4.3.4"
     mathjax-full "^3.2.2"
     mime "^3.0.0"
     uuid "^9.0.0"
     w3c-xmlserializer "^4.0.0"
-
-"@manuscripts/manuscripts-json-schema@../manuscripts-json-schema":
-  version "2.0.0"
-  dependencies:
-    ajv "^6.10.0"
-    deepmerge "^4.2.2"
-    js-beautify "^1.14.7"
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"

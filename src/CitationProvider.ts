@@ -15,7 +15,7 @@
  */
 
 import locales from '@manuscripts/data/dist/csl/locales/locales.json'
-import { BibliographyItem } from '@manuscripts/manuscripts-json-schema'
+import { BibliographyItem } from '@manuscripts/json-schema'
 import CiteProc, { Citation as CiteProcCitation } from 'citeproc'
 
 import { variableWrapper } from './citeproc-variable-wrapper'

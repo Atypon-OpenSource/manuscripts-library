@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { schema } from '@manuscripts/manuscript-transform'
+import { schema } from '@manuscripts/transform'
 import { Node } from 'prosemirror-model'
 
 import { createBibliographyElementContents } from '../citation-builder'
