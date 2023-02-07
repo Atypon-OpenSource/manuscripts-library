@@ -31,6 +31,7 @@ import {
   Person,
   PersonFieldKey,
   StringFieldKey,
+  // eslint-disable-next-line import/no-unresolved
 } from 'csl-json'
 
 const personFields: Array<PersonFieldKey> = [

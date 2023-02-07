@@ -63,7 +63,7 @@ describe('estimate ID', () => {
     )
 
     expect(
-      estimateID(({ author: [], ...item } as unknown) as BibliographyItem)
+      estimateID({ author: [], ...item } as unknown as BibliographyItem)
     ).toBe(
       JSON.stringify({
         title: 'title',
@@ -89,11 +89,11 @@ describe('estimate ID', () => {
     )
 
     expect(
-      estimateID(({
+      estimateID({
         ...item,
         DOI: undefined,
         PMID: '1234567',
-      } as unknown) as BibliographyItem)
+      } as unknown as BibliographyItem)
     ).toBe('1234567')
   })
 })

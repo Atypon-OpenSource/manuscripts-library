@@ -33,7 +33,7 @@ describe('CitationProvider', () => {
     const modelMap: Map<string, Model> = new Map()
 
     for (const item of data) {
-      modelMap.set(item._id, (item as unknown) as Model)
+      modelMap.set(item._id, item as unknown as Model)
     }
 
     const getModel = <T extends Model>(id: string) =>
@@ -77,9 +77,8 @@ describe('CitationProvider', () => {
 
       const citations = buildCitations(citationNodes, getLibraryItem)
 
-      const generatedCitations = citationProvider.rebuildProcessorState(
-        citations
-      )
+      const generatedCitations =
+        citationProvider.rebuildProcessorState(citations)
 
       expect(generatedCitations).toMatchSnapshot(`citations-${cslIdentifier}`)
 
@@ -88,10 +87,8 @@ describe('CitationProvider', () => {
         expect(content).not.toBe('[NO_PRINTED_FORM]')
       }
 
-      const [
-        bibmeta,
-        generatedBibliographyItems,
-      ] = citationProvider.makeBibliography()
+      const [bibmeta, generatedBibliographyItems] =
+        citationProvider.makeBibliography()
 
       expect(bibmeta.bibliography_errors).toHaveLength(0)
 
