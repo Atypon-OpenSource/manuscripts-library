@@ -30,7 +30,6 @@
     "astrocite-bibtex": "^0.16.4",
     "astrocite-ris": "^0.16.4",
     "citeproc": "^2.4.62",
-    "csl-json": "^0.1.0",
     "fontoxpath": "^3.28.2",
     "prosemirror-model": "^1.18.3"
   },
@@ -46,6 +45,7 @@
     "@typescript-eslint/parser": "^5.47.0",
     "babel-jest": "^29.3.1",
     "depcheck": "^1.4.3",
+    "csl-json": "^0.1.0",
     "eslint": "^8.30.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-header": "^3.1.1",
