@@ -26,7 +26,7 @@
   "dependencies": {
     "@manuscripts/data": "^0.1.12",
     "@manuscripts/json-schema": "^1.0.0",
-    "@manuscripts/transform": "^1.0.1",
+    "@manuscripts/transform": "^1.1.2",
     "astrocite-bibtex": "^0.16.4",
     "astrocite-ris": "^0.16.4",
     "citeproc": "^2.4.62",
