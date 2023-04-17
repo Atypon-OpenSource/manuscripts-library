@@ -56,7 +56,7 @@ export const findCSLStyleForBundleID = async (
 ): Promise<string | undefined> => {
   const { default: bundles }: { default: Bundle[] } = await import(
     // @ts-ignore
-    '@manuscripts/data/dist/shared/bundles.json'
+    '../node_modules/@manuscripts/data/dist/shared/bundles.json'
   )
   const bundle = bundles.find((item) => item._id === bundleID)
   return getBundleCslIdentifier(bundle)
@@ -68,7 +68,7 @@ export const loadCSLStyle = async (cslIdentifier: string): Promise<string> => {
     throw new Error(`No style name in ${cslIdentifier}`)
   }
   const styles: Record<string, string> = await import(
-    `@manuscripts/data/dist/csl/styles/${basename[0]}.json`
+    `../node_modules@manuscripts/data/dist/csl/styles/${basename[0]}.json`
   )
   if (!styles[cslIdentifier]) {
     throw new Error(`Style ${cslIdentifier} not found`)
