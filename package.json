@@ -1,6 +1,6 @@
 {
   "name": "@manuscripts/library",
-  "version": "1.0.2-vite-support-2",
+  "version": "1.0.3",
   "repository": "github:Atypon-OpenSource/manuscripts-library",
   "license": "Apache-2.0",
   "main": "dist/cjs",
