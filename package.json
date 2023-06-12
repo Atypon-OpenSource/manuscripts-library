@@ -1,6 +1,6 @@
 {
   "name": "@manuscripts/library",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "repository": "github:Atypon-OpenSource/manuscripts-library",
   "license": "Apache-2.0",
   "main": "dist/cjs",
@@ -25,8 +25,8 @@
   },
   "dependencies": {
     "@manuscripts/data": "^1.0.2",
-    "@manuscripts/json-schema": "^2.0.1",
-    "@manuscripts/transform": "^1.2.1",
+    "@manuscripts/json-schema": "^2.0.2",
+    "@manuscripts/transform": "^1.2.5",
     "astrocite-bibtex": "^0.16.4",
     "astrocite-ris": "^0.16.4",
     "citeproc": "^2.4.62",
