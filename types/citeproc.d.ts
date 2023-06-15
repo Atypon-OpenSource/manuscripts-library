@@ -50,7 +50,7 @@ declare module 'citeproc' {
     entryspacing: number
     linespacing: number
     hangingindent: boolean
-    ["second-field-align"]: boolean
+    ['second-field-align']: boolean
     bibstart: string
     bibend: string
     bibliography_errors: string[]
@@ -111,6 +111,7 @@ declare module 'citeproc' {
     ): Array<[string, number, string]> // id, noteIndex, output
 
     public makeBibliography(): [BibliographyMetadata, Bibliography]
+    public makeCitationCluster(idList: Array<string | number>): string
   }
 
   export function getLocaleNames(

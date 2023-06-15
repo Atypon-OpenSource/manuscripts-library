@@ -15,7 +15,7 @@
  */
 
 import locales from '@manuscripts/data/dist/csl/locales/locales.json'
-import { BibliographyItem } from '@manuscripts/json-schema'
+import { BibliographyItem, Citation } from '@manuscripts/json-schema'
 import CiteProc, { Citation as CiteProcCitation } from 'citeproc'
 
 import { variableWrapper } from './citeproc-variable-wrapper'
@@ -82,6 +82,10 @@ export class CitationProvider {
     return this.engine.makeBibliography()
   }
 
+  makeCitations(bibliographyItemIds: string[]) {
+    return this.engine.makeCitationCluster(bibliographyItemIds)
+  }
+
   public static makeBibliographyFromCitations(
     citations: BibliographyItem[],
     citationStyle: string,
@@ -96,5 +100,24 @@ export class CitationProvider {
     }
     const provider = new CitationProvider(props)
     return provider.makeBibliography(citations)
+  }
+
+  static makeCitationCluster(
+    citations: Map<string, BibliographyItem>,
+    citation: Citation,
+    citationStyle: string,
+    lang?: string
+  ) {
+    const getLibraryItem = (id: string) => citations.get(id)
+    const props = {
+      citationStyle,
+      lang,
+      getLibraryItem,
+    }
+    const items = citation.embeddedCitationItems.map(
+      (item) => item.bibliographyItem
+    )
+    const provider = new CitationProvider(props)
+    return provider.makeCitations(items)
   }
 }
