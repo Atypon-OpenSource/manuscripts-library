@@ -117,10 +117,13 @@ export class CitationProvider {
       lang,
       getLibraryItem,
     }
-    const items = citation.embeddedCitationItems.map(
+    const items = citation?.embeddedCitationItems.map(
       (item) => item.bibliographyItem
     )
-    const provider = new CitationProvider(props)
-    return provider.makeCitations(items)
+    if (items) {
+      const provider = new CitationProvider(props)
+      return provider.makeCitations(items)
+    }
+    return ''
   }
 }
