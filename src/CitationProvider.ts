@@ -83,6 +83,9 @@ export class CitationProvider {
   }
 
   makeCitations(bibliographyItemIds: string[]) {
+    if (bibliographyItemIds) {
+      this.engine.updateItems(bibliographyItemIds)
+    }
     return this.engine.makeCitationCluster(bibliographyItemIds)
   }
 
