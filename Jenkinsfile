@@ -1,6 +1,12 @@
 pipeline {
     agent {
-        label 'cisc10'
+        docker {
+            image 'node:18'
+            args '--userns=host \
+                  --security-opt seccomp:unconfined \
+                  -v /home/ci/.cache/yarn:/.cache/yarn \
+                  -v /home/ci/.npm:/.npm'
+        }
     }
     parameters {
         booleanParam(name: 'PUBLISH', defaultValue: false)
