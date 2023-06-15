@@ -1,11 +1,6 @@
 pipeline {
     agent {
-        docker {
-            image 'node:18'
-            args '--userns=host \
-                  -v /home/ci/.cache/yarn:/.cache/yarn \
-                  -v /home/ci/.npm:/.npm'
-        }
+        label 'cisc10'
     }
     parameters {
         booleanParam(name: 'PUBLISH', defaultValue: false)
