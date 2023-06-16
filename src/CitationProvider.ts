@@ -82,9 +82,12 @@ export class CitationProvider {
     return this.engine.makeBibliography()
   }
 
-  makeCitations(bibliographyItemIds: string[]) {
-    if (bibliographyItemIds) {
-      this.engine.updateItems(bibliographyItemIds)
+  public makeCitations(
+    citations: BibliographyItem[],
+    bibliographyItemIds: string[]
+  ) {
+    if (citations) {
+      this.engine.updateItems(citations.map((c) => c._id))
     }
     return this.engine.makeCitationCluster(bibliographyItemIds)
   }
@@ -105,24 +108,25 @@ export class CitationProvider {
     return provider.makeBibliography(citations)
   }
 
-  static makeCitationCluster(
-    citations: Map<string, BibliographyItem>,
+  public static makeCitationCluster(
+    citations: BibliographyItem[],
     citation: Citation,
     citationStyle: string,
     lang?: string
   ) {
-    const getLibraryItem = (id: string) => citations.get(id)
+    const citationsMap = new Map(citations.map((c) => [c._id, c]))
+    const getLibraryItem = (id: string) => citationsMap.get(id)
     const props = {
       citationStyle,
       lang,
       getLibraryItem,
     }
-    const items = citation?.embeddedCitationItems.map(
+    const bibliographyItemIds = citation?.embeddedCitationItems.map(
       (item) => item.bibliographyItem
     )
-    if (items) {
+    if (bibliographyItemIds) {
       const provider = new CitationProvider(props)
-      return provider.makeCitations(items)
+      return provider.makeCitations(citations, bibliographyItemIds)
     }
     return ''
   }
