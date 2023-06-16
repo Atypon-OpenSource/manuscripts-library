@@ -57,6 +57,10 @@ declare module 'citeproc' {
     entry_ids: string[]
   }
 
+  interface IDList {
+    id: string
+  }
+
   type Bibliography = string[]
 
   export class Engine {
@@ -111,7 +115,7 @@ declare module 'citeproc' {
     ): Array<[string, number, string]> // id, noteIndex, output
 
     public makeBibliography(): [BibliographyMetadata, Bibliography]
-    public makeCitationCluster(idList: Array<string | number>): string
+    public makeCitationCluster(idList: Array<IDList>): string
   }
 
   export function getLocaleNames(

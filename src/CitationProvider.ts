@@ -27,6 +27,10 @@ interface Props {
   lang?: string // Default en-GB
 }
 
+interface idList {
+  id: string
+}
+
 export class CitationProvider {
   private engine: CiteProc.Engine
   private getLibraryItem: (id: string) => BibliographyItem | undefined
@@ -84,7 +88,7 @@ export class CitationProvider {
 
   public makeCitations(
     citations: BibliographyItem[],
-    bibliographyItemIds: string[]
+    bibliographyItemIds: idList[]
   ) {
     if (citations) {
       this.engine.updateItems(citations.map((c) => c._id))
@@ -121,9 +125,9 @@ export class CitationProvider {
       lang,
       getLibraryItem,
     }
-    const bibliographyItemIds = citation?.embeddedCitationItems.map(
-      (item) => item.bibliographyItem
-    )
+    const bibliographyItemIds = citation?.embeddedCitationItems.map((item) => {
+      return { id: item.bibliographyItem }
+    })
     if (bibliographyItemIds) {
       const provider = new CitationProvider(props)
       return provider.makeCitations(citations, bibliographyItemIds)
