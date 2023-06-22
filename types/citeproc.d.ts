@@ -57,7 +57,7 @@ declare module 'citeproc' {
     entry_ids: string[]
   }
 
-  interface IDList {
+  interface idList {
     id: string
   }
 
@@ -115,7 +115,7 @@ declare module 'citeproc' {
     ): Array<[string, number, string]> // id, noteIndex, output
 
     public makeBibliography(): [BibliographyMetadata, Bibliography]
-    public makeCitationCluster(idList: Array<IDList>): string
+    public makeCitationCluster(idList: Array<idList>): string
   }
 
   export function getLocaleNames(
