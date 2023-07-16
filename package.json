@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "@manuscripts/data": "^1.0.2",
-    "@manuscripts/json-schema": "^2.0.2",
+    "@manuscripts/json-schema": "^2.0.2-LEAN-2501-v2",
     "@manuscripts/transform": "^1.2.5",
     "astrocite-bibtex": "^0.16.4",
     "astrocite-ris": "^0.16.4",
