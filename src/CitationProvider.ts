@@ -134,4 +134,23 @@ export class CitationProvider {
     }
     return ''
   }
+
+  public static rebuildCitations(
+    citations: CiteProcCitation[],
+    bibliographyItems: BibliographyItem[],
+    citationStyle: string,
+    lang?: string
+  ): Array<[string, number, string]> {
+    const bibliographyItemsMap = new Map(
+      bibliographyItems.map((c) => [c._id, c])
+    )
+    const getLibraryItem = (id: string) => bibliographyItemsMap.get(id)
+    const props = {
+      citationStyle,
+      lang,
+      getLibraryItem,
+    }
+    const provider = new CitationProvider(props)
+    return provider.rebuildProcessorState(citations, 'html')
+  }
 }
