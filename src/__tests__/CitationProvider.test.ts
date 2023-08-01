@@ -16,17 +16,39 @@
 
 // @ts-ignore
 import { data } from '@manuscripts/examples/data/project-dump-2.json'
-import {
-  BibliographyItem,
-  Bundle,
-  Model,
-  ObjectTypes,
-} from '@manuscripts/json-schema'
+import { BibliographyItem, Model } from '@manuscripts/json-schema'
 import { Decoder } from '@manuscripts/transform'
+import * as CiteProc from 'citeproc'
+import { evaluateXPathToString } from 'fontoxpath'
 
 import { buildCitationNodes, buildCitations } from '../citation-builder'
 import { CitationProvider } from '../CitationProvider'
-import { loadCitationStyle } from '../csl-styles'
+import { cslStyles, local } from './csl-styles'
+
+const namespaceMap = new Map<string | null, string>([
+  ['csl', 'http://purl.org/net/xbiblio/csl'],
+])
+
+const buildDependentStyle = async (citationStyleData: string) => {
+  // const parser = CiteProc.setupXml(citationStyleData)
+  const doc = new DOMParser().parseFromString(
+    citationStyleData,
+    'application/xml'
+  )
+  const parentLink = evaluateXPathToString(
+    '/csl:style/csl:info/csl:link[@rel="independent-parent"]/@href',
+    doc,
+    undefined,
+    undefined,
+    { namespaceResolver: (prefix: string) => namespaceMap.get(prefix) || null }
+  )
+  if (parentLink && parentLink.startsWith('http://www.zotero.org/styles/')) {
+    // TODO: merge metadata (locales) into parent from child?
+    // @ts-ignore
+    return cslStyles[parentLink]
+  }
+  return citationStyleData
+}
 
 describe('CitationProvider', () => {
   test('generates bibliography', async () => {
@@ -42,30 +64,11 @@ describe('CitationProvider', () => {
     const getLibraryItem = (id: string) =>
       modelMap.get(id) as BibliographyItem | undefined
 
-    const cslIdentifiers = [
-      'http://www.zotero.org/styles/nature',
-      'http://www.zotero.org/styles/science',
-      'http://www.zotero.org/styles/plos',
-      'http://www.zotero.org/styles/peerj',
-      'http://www.zotero.org/styles/american-medical-association',
-      'http://www.zotero.org/styles/3-biotech', // has independent-parent
-      'http://www.zotero.org/styles/infection-and-immunity', // has independent-parent
-    ]
-
-    for (const cslIdentifier of cslIdentifiers) {
-      const bundle: Bundle = {
-        _id: 'MPBundle:test',
-        objectType: ObjectTypes.Bundle,
-        createdAt: 0,
-        updatedAt: 0,
-        csl: { cslIdentifier },
-      }
-
-      const citationStyle = await loadCitationStyle({ bundle })
-
+    for (const [cslIdentifier, cslStyle] of Object.entries(cslStyles)) {
       const citationProvider = new CitationProvider({
         lang: 'en-GB',
-        citationStyle,
+        local: local as unknown as CiteProc.Locale,
+        citationStyle: cslStyle,
         getLibraryItem,
       })
 
