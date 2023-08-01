@@ -56,7 +56,7 @@ export class CitationProvider {
     )
   }
 
-  public recreateEngine(style: string, lang = 'en-GB', locale: string): void {
+  public recreateEngine(style: string, lang = 'en-US', locale: string): void {
     this.engine = this.createEngine(style, lang, locale)
   }
 
