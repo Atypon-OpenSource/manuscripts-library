@@ -24,7 +24,7 @@ interface Props {
   getLibraryItem: (id: string) => BibliographyItem | undefined
   citationStyle: string
   lang?: string // Default en-GB
-  local: CiteProc.Locale
+  local: string
 }
 
 export class CitationProvider {
@@ -39,11 +39,11 @@ export class CitationProvider {
     this.engine.updateItems([])
   }
 
-  private createEngine(style: string, lang: string, locale: CiteProc.Locale) {
+  private createEngine(style: string, lang: string, locale: string) {
     return new CiteProc.Engine(
       {
         retrieveItem: this.retrieveCiteItem,
-        retrieveLocale: (): CiteProc.Locale => locale,
+        retrieveLocale: (): string => locale,
         variableWrapper,
       },
       style,
@@ -52,11 +52,7 @@ export class CitationProvider {
     )
   }
 
-  public recreateEngine(
-    style: string,
-    lang = 'en-GB',
-    locale: CiteProc.Locale
-  ): void {
+  public recreateEngine(style: string, lang = 'en-GB', locale: string): void {
     this.engine = this.createEngine(style, lang, locale)
   }
 
@@ -89,7 +85,7 @@ export class CitationProvider {
   public static makeBibliographyFromCitations(
     citations: BibliographyItem[],
     citationStyle: string,
-    local: CiteProc.Locale,
+    local: string,
     lang?: string
   ): [CiteProc.BibliographyMetadata, CiteProc.Bibliography] {
     const citationsMap = new Map(citations.map((c) => [c._id, c]))

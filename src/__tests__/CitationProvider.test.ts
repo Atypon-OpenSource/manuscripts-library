@@ -67,7 +67,7 @@ describe('CitationProvider', () => {
     for (const [cslIdentifier, cslStyle] of Object.entries(cslStyles)) {
       const citationProvider = new CitationProvider({
         lang: 'en-GB',
-        local: local as unknown as CiteProc.Locale,
+        local,
         citationStyle: cslStyle,
         getLibraryItem,
       })
