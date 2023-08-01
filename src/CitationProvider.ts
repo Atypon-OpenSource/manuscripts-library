@@ -24,7 +24,7 @@ import defaultLocale from './defaultLocale'
 interface Props {
   getLibraryItem: (id: string) => BibliographyItem | undefined
   citationStyle: string
-  lang?: string // Default en-GB
+  lang?: string // Default en-US
   locale: string | null
 }
 
