@@ -19,12 +19,13 @@ import CiteProc, { Citation as CiteProcCitation } from 'citeproc'
 
 import { variableWrapper } from './citeproc-variable-wrapper'
 import { convertBibliographyItemToCSL } from './csl-converter'
+import defaultLocale from './defaultLocale'
 
 interface Props {
   getLibraryItem: (id: string) => BibliographyItem | undefined
   citationStyle: string
   lang?: string // Default en-GB
-  local: string
+  locale: string | null
 }
 
 export class CitationProvider {
@@ -32,11 +33,14 @@ export class CitationProvider {
   private getLibraryItem: (id: string) => BibliographyItem | undefined
 
   constructor(props: Props) {
-    const { getLibraryItem, citationStyle, lang = 'en-GB', local } = props
+    const { getLibraryItem, citationStyle, lang = 'en-US', locale } = props
 
     this.getLibraryItem = getLibraryItem
-    this.engine = this.createEngine(citationStyle, lang, local)
-    this.engine.updateItems([])
+    this.engine = this.createEngine(
+      citationStyle,
+      lang,
+      locale || defaultLocale
+    )
   }
 
   private createEngine(style: string, lang: string, locale: string) {
@@ -85,7 +89,7 @@ export class CitationProvider {
   public static makeBibliographyFromCitations(
     citations: BibliographyItem[],
     citationStyle: string,
-    local: string,
+    locale: string | null,
     lang?: string
   ): [CiteProc.BibliographyMetadata, CiteProc.Bibliography] {
     const citationsMap = new Map(citations.map((c) => [c._id, c]))
@@ -93,7 +97,7 @@ export class CitationProvider {
     const props = {
       getLibraryItem,
       citationStyle,
-      local,
+      locale,
       lang,
     }
     const provider = new CitationProvider(props)

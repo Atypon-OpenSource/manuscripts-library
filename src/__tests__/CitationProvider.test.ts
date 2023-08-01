@@ -21,7 +21,8 @@ import { Decoder } from '@manuscripts/transform'
 
 import { buildCitationNodes, buildCitations } from '../citation-builder'
 import { CitationProvider } from '../CitationProvider'
-import { cslStyles, local } from './csl-styles'
+import defaultLocal from '../defaultLocale'
+import { cslStyles } from './csl-styles'
 
 describe('CitationProvider', () => {
   test('generates bibliography', async () => {
@@ -39,8 +40,8 @@ describe('CitationProvider', () => {
 
     for (const [cslIdentifier, cslStyle] of Object.entries(cslStyles)) {
       const citationProvider = new CitationProvider({
-        lang: 'en-GB',
-        local,
+        lang: 'en-US',
+        locale: defaultLocal,
         citationStyle: cslStyle,
         getLibraryItem,
       })
