@@ -25,7 +25,7 @@ interface Props {
   getLibraryItem: (id: string) => BibliographyItem | undefined
   citationStyle: string
   lang?: string // Default en-US
-  locale: string | null
+  locale?: string
 }
 
 export class CitationProvider {
@@ -89,7 +89,7 @@ export class CitationProvider {
   public static makeBibliographyFromCitations(
     citations: BibliographyItem[],
     citationStyle: string,
-    locale: string | null,
+    locale?: string,
     lang?: string
   ): [CiteProc.BibliographyMetadata, CiteProc.Bibliography] {
     const citationsMap = new Map(citations.map((c) => [c._id, c]))
