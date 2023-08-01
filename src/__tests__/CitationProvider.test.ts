@@ -18,37 +18,10 @@
 import { data } from '@manuscripts/examples/data/project-dump-2.json'
 import { BibliographyItem, Model } from '@manuscripts/json-schema'
 import { Decoder } from '@manuscripts/transform'
-import * as CiteProc from 'citeproc'
-import { evaluateXPathToString } from 'fontoxpath'
 
 import { buildCitationNodes, buildCitations } from '../citation-builder'
 import { CitationProvider } from '../CitationProvider'
 import { cslStyles, local } from './csl-styles'
-
-const namespaceMap = new Map<string | null, string>([
-  ['csl', 'http://purl.org/net/xbiblio/csl'],
-])
-
-const buildDependentStyle = async (citationStyleData: string) => {
-  // const parser = CiteProc.setupXml(citationStyleData)
-  const doc = new DOMParser().parseFromString(
-    citationStyleData,
-    'application/xml'
-  )
-  const parentLink = evaluateXPathToString(
-    '/csl:style/csl:info/csl:link[@rel="independent-parent"]/@href',
-    doc,
-    undefined,
-    undefined,
-    { namespaceResolver: (prefix: string) => namespaceMap.get(prefix) || null }
-  )
-  if (parentLink && parentLink.startsWith('http://www.zotero.org/styles/')) {
-    // TODO: merge metadata (locales) into parent from child?
-    // @ts-ignore
-    return cslStyles[parentLink]
-  }
-  return citationStyleData
-}
 
 describe('CitationProvider', () => {
   test('generates bibliography', async () => {
