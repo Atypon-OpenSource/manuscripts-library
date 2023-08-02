@@ -24,7 +24,6 @@ import defaultLocale from './defaultLocale'
 interface Props {
   getLibraryItem: (id: string) => BibliographyItem | undefined
   citationStyle: string
-  lang?: string // Default en-US
   locale?: string
 }
 
@@ -33,17 +32,13 @@ export class CitationProvider {
   private getLibraryItem: (id: string) => BibliographyItem | undefined
 
   constructor(props: Props) {
-    const { getLibraryItem, citationStyle, lang = 'en-US', locale } = props
+    const { getLibraryItem, citationStyle, locale } = props
 
     this.getLibraryItem = getLibraryItem
-    this.engine = this.createEngine(
-      citationStyle,
-      lang,
-      locale || defaultLocale
-    )
+    this.engine = this.createEngine(citationStyle, locale || defaultLocale)
   }
 
-  private createEngine(style: string, lang: string, locale: string) {
+  private createEngine(style: string, locale: string) {
     return new CiteProc.Engine(
       {
         retrieveItem: this.retrieveCiteItem,
@@ -51,13 +46,13 @@ export class CitationProvider {
         variableWrapper,
       },
       style,
-      lang,
+      'en-US',
       false
     )
   }
 
-  public recreateEngine(style: string, lang = 'en-US', locale: string): void {
-    this.engine = this.createEngine(style, lang, locale)
+  public recreateEngine(style: string, locale: string): void {
+    this.engine = this.createEngine(style, locale)
   }
 
   private retrieveCiteItem = (id: string): CSL.Data => {
