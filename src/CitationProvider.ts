@@ -84,8 +84,7 @@ export class CitationProvider {
   public static makeBibliographyFromCitations(
     citations: BibliographyItem[],
     citationStyle: string,
-    locale?: string,
-    lang?: string
+    locale?: string
   ): [CiteProc.BibliographyMetadata, CiteProc.Bibliography] {
     const citationsMap = new Map(citations.map((c) => [c._id, c]))
     const getLibraryItem = (id: string) => citationsMap.get(id)
@@ -93,7 +92,6 @@ export class CitationProvider {
       getLibraryItem,
       citationStyle,
       locale,
-      lang,
     }
     const provider = new CitationProvider(props)
     return provider.makeBibliography(citations)

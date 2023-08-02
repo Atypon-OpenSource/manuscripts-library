@@ -1,6 +1,6 @@
 {
   "name": "@manuscripts/library",
-  "version": "1.1.4-LEAN-2651",
+  "version": "1.1.4-LEAN-2651-1",
   "repository": "github:Atypon-OpenSource/manuscripts-library",
   "license": "Apache-2.0",
   "main": "dist/cjs",
