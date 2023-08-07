@@ -14,33 +14,18 @@
  * limitations under the License.
  */
 
-// @ts-ignore
-import { data } from '@manuscripts/examples/data/project-dump-2.json'
-import {
-  BibliographyItem,
-  Bundle,
-  Model,
-  ObjectTypes,
-} from '@manuscripts/json-schema'
-import { Decoder } from '@manuscripts/transform'
+import { Bundle, ObjectTypes } from '@manuscripts/json-schema'
+import { CitationNode, schema } from '@manuscripts/transform'
 
-import { buildCitationNodes, buildCitations } from '../citation-builder'
+import { buildCitations } from '../citation-builder'
 import { CitationProvider } from '../CitationProvider'
 import { loadCitationStyle } from '../csl-styles'
+import { bibliographyItemModels, citationModels } from './citation-data'
 
 describe('CitationProvider', () => {
   test('generates bibliography', async () => {
-    const modelMap: Map<string, Model> = new Map()
-
-    for (const item of data) {
-      modelMap.set(item._id, item as unknown as Model)
-    }
-
-    const getModel = <T extends Model>(id: string) =>
-      modelMap.get(id) as T | undefined
-
     const getLibraryItem = (id: string) =>
-      modelMap.get(id) as BibliographyItem | undefined
+      bibliographyItemModels.filter((i) => i._id === id)[0]
 
     const cslIdentifiers = [
       'http://www.zotero.org/styles/nature',
@@ -64,18 +49,17 @@ describe('CitationProvider', () => {
       const citationStyle = await loadCitationStyle({ bundle })
 
       const citationProvider = new CitationProvider({
-        lang: 'en-GB',
+        lang: 'en-US',
         citationStyle,
         getLibraryItem,
       })
 
-      const decoder = new Decoder(modelMap)
+      const dummyNode = schema.nodes.citation.create() as CitationNode
 
-      const article = decoder.createArticleNode()
-
-      const citationNodes = buildCitationNodes(article, getModel)
-
-      const citations = buildCitations(citationNodes, getLibraryItem)
+      const citations = buildCitations(
+        citationModels.map((m) => [dummyNode, -1, m]),
+        getLibraryItem
+      )
 
       const generatedCitations =
         citationProvider.rebuildProcessorState(citations)
