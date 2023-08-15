@@ -14,29 +14,18 @@
  * limitations under the License.
  */
 
-// @ts-ignore
-import { data } from '@manuscripts/examples/data/project-dump-2.json'
-import { BibliographyItem, Model } from '@manuscripts/json-schema'
-import { Decoder } from '@manuscripts/transform'
+import { CitationNode, schema } from '@manuscripts/transform'
 
-import { buildCitationNodes, buildCitations } from '../citation-builder'
+import { buildCitations } from '../citation-builder'
 import { CitationProvider } from '../CitationProvider'
 import defaultLocal from '../defaultLocale'
+import { bibliographyItemModels, citationModels } from './citation-data'
 import { cslStyles } from './csl-styles'
 
 describe('CitationProvider', () => {
   test('generates bibliography', async () => {
-    const modelMap: Map<string, Model> = new Map()
-
-    for (const item of data) {
-      modelMap.set(item._id, item as unknown as Model)
-    }
-
-    const getModel = <T extends Model>(id: string) =>
-      modelMap.get(id) as T | undefined
-
     const getLibraryItem = (id: string) =>
-      modelMap.get(id) as BibliographyItem | undefined
+      bibliographyItemModels.filter((i) => i._id === id)[0]
 
     for (const [cslIdentifier, cslStyle] of Object.entries(cslStyles)) {
       const citationProvider = new CitationProvider({
@@ -45,13 +34,12 @@ describe('CitationProvider', () => {
         getLibraryItem,
       })
 
-      const decoder = new Decoder(modelMap)
+      const dummyNode = schema.nodes.citation.create() as CitationNode
 
-      const article = decoder.createArticleNode()
-
-      const citationNodes = buildCitationNodes(article, getModel)
-
-      const citations = buildCitations(citationNodes, getLibraryItem)
+      const citations = buildCitations(
+        citationModels.map((m) => [dummyNode, -1, m]),
+        getLibraryItem
+      )
 
       const generatedCitations =
         citationProvider.rebuildProcessorState(citations)
