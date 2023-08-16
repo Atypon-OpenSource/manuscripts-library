@@ -14,17 +14,17 @@
  * limitations under the License.
  */
 
-import locales from '@manuscripts/data/dist/csl/locales/locales.json'
-import { BibliographyItem, Citation } from '@manuscripts/json-schema'
+import { BibliographyItem, Citation, CitationItem } from '@manuscripts/json-schema'
 import CiteProc, { Citation as CiteProcCitation } from 'citeproc'
 
 import { variableWrapper } from './citeproc-variable-wrapper'
 import { convertBibliographyItemToCSL } from './csl-converter'
+import defaultLocale from './defaultLocale'
 
 interface Props {
   getLibraryItem: (id: string) => BibliographyItem | undefined
   citationStyle: string
-  lang?: string // Default en-GB
+  locale?: string
 }
 
 interface idList {
@@ -36,28 +36,27 @@ export class CitationProvider {
   private getLibraryItem: (id: string) => BibliographyItem | undefined
 
   constructor(props: Props) {
-    const { getLibraryItem, citationStyle, lang = 'en-GB' } = props
+    const { getLibraryItem, citationStyle, locale } = props
 
     this.getLibraryItem = getLibraryItem
-    this.engine = this.createEngine(citationStyle, lang)
-    this.engine.updateItems([])
+    this.engine = this.createEngine(citationStyle, locale || defaultLocale)
   }
 
-  private createEngine(style: string, lang: string) {
+  private createEngine(style: string, locale: string) {
     return new CiteProc.Engine(
       {
         retrieveItem: this.retrieveCiteItem,
-        retrieveLocale: (id: string): CiteProc.Locale => locales[id],
+        retrieveLocale: (): string => locale,
         variableWrapper,
       },
       style,
-      lang,
+      'en-US',
       false
     )
   }
 
-  public recreateEngine(style: string, lang = 'en-GB'): void {
-    this.engine = this.createEngine(style, lang)
+  public recreateEngine(style: string, locale: string): void {
+    this.engine = this.createEngine(style, locale)
   }
 
   private retrieveCiteItem = (id: string): CSL.Data => {
@@ -99,14 +98,14 @@ export class CitationProvider {
   public static makeBibliographyFromCitations(
     citations: BibliographyItem[],
     citationStyle: string,
-    lang?: string
+    locale?: string
   ): [CiteProc.BibliographyMetadata, CiteProc.Bibliography] {
     const citationsMap = new Map(citations.map((c) => [c._id, c]))
     const getLibraryItem = (id: string) => citationsMap.get(id)
     const props = {
-      citationStyle,
-      lang,
       getLibraryItem,
+      citationStyle,
+      locale,
     }
     const provider = new CitationProvider(props)
     return provider.makeBibliography(citations)
@@ -125,7 +124,7 @@ export class CitationProvider {
       lang,
       getLibraryItem,
     }
-    const bibliographyItemIds = citation?.embeddedCitationItems.map((item) => {
+    const bibliographyItemIds = citation?.embeddedCitationItems.map((item: CitationItem) => {
       return { id: item.bibliographyItem }
     })
     if (bibliographyItemIds) {

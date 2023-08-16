@@ -14,68 +14,32 @@
  * limitations under the License.
  */
 
-// @ts-ignore
-import { data } from '@manuscripts/examples/data/project-dump-2.json'
-import {
-  BibliographyItem,
-  Bundle,
-  Model,
-  ObjectTypes,
-} from '@manuscripts/json-schema'
-import { Decoder } from '@manuscripts/transform'
+import { CitationNode, schema } from '@manuscripts/transform'
 
-import { buildCitationNodes, buildCitations } from '../citation-builder'
+import { buildCitations } from '../citation-builder'
 import { CitationProvider } from '../CitationProvider'
-import { loadCitationStyle } from '../csl-styles'
+import defaultLocal from '../defaultLocale'
+import { bibliographyItemModels, citationModels } from './citation-data'
+import { cslStyles } from './csl-styles'
 
 describe('CitationProvider', () => {
   test('generates bibliography', async () => {
-    const modelMap: Map<string, Model> = new Map()
-
-    for (const item of data) {
-      modelMap.set(item._id, item as unknown as Model)
-    }
-
-    const getModel = <T extends Model>(id: string) =>
-      modelMap.get(id) as T | undefined
-
     const getLibraryItem = (id: string) =>
-      modelMap.get(id) as BibliographyItem | undefined
+      bibliographyItemModels.filter((i) => i._id === id)[0]
 
-    const cslIdentifiers = [
-      'http://www.zotero.org/styles/nature',
-      'http://www.zotero.org/styles/science',
-      'http://www.zotero.org/styles/plos',
-      'http://www.zotero.org/styles/peerj',
-      'http://www.zotero.org/styles/american-medical-association',
-      'http://www.zotero.org/styles/3-biotech', // has independent-parent
-      'http://www.zotero.org/styles/infection-and-immunity', // has independent-parent
-    ]
-
-    for (const cslIdentifier of cslIdentifiers) {
-      const bundle: Bundle = {
-        _id: 'MPBundle:test',
-        objectType: ObjectTypes.Bundle,
-        createdAt: 0,
-        updatedAt: 0,
-        csl: { cslIdentifier },
-      }
-
-      const citationStyle = await loadCitationStyle({ bundle })
-
+    for (const [cslIdentifier, cslStyle] of Object.entries(cslStyles)) {
       const citationProvider = new CitationProvider({
-        lang: 'en-GB',
-        citationStyle,
+        locale: defaultLocal,
+        citationStyle: cslStyle,
         getLibraryItem,
       })
 
-      const decoder = new Decoder(modelMap)
+      const dummyNode = schema.nodes.citation.create() as CitationNode
 
-      const article = decoder.createArticleNode()
-
-      const citationNodes = buildCitationNodes(article, getModel)
-
-      const citations = buildCitations(citationNodes, getLibraryItem)
+      const citations = buildCitations(
+        citationModels.map((m) => [dummyNode, -1, m]),
+        getLibraryItem
+      )
 
       const generatedCitations =
         citationProvider.rebuildProcessorState(citations)

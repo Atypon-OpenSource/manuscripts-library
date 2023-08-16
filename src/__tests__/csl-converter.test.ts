@@ -59,7 +59,6 @@ describe('csl-converter', () => {
       type: 'article',
       containerID: 'ProjectX',
       manuscriptID: 'ManuscriptX',
-      sessionID: 'test',
       createdAt: 0,
       updatedAt: 0,
     }
