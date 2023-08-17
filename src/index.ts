@@ -17,8 +17,6 @@ export { parseBibliography } from './csl-parser'
 
 export { CitationProvider } from './CitationProvider'
 
-export { loadCitationStyle } from './csl-styles'
-
 export {
   matchLibraryItemByIdentifier,
   bibliographyItemTypes,
