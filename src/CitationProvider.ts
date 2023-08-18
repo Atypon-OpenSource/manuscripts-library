@@ -14,7 +14,11 @@
  * limitations under the License.
  */
 
-import { BibliographyItem, Citation, CitationItem } from '@manuscripts/json-schema'
+import {
+  BibliographyItem,
+  Citation,
+  CitationItem,
+} from '@manuscripts/json-schema'
 import CiteProc, { Citation as CiteProcCitation } from 'citeproc'
 
 import { variableWrapper } from './citeproc-variable-wrapper'
@@ -67,13 +71,34 @@ export class CitationProvider {
     throw Error(`Missing CitationProvider citation with id ${id}`)
   }
 
-  public rebuildProcessorState(
+  public rebuildState(
     citations: CiteProcCitation[],
     mode?: 'text' | 'html' | 'rtf',
     uncitedItemIDs?: string[]
   ): Array<[string, number, string]> {
     // id, noteIndex, output
     return this.engine.rebuildProcessorState(citations, mode, uncitedItemIDs)
+  }
+
+  public static rebuildProcessorState(
+    citations: CiteProcCitation[],
+    bibliographyItems: BibliographyItem[],
+    citationStyle: string,
+    locale?: string,
+    mode?: 'text' | 'html' | 'rtf',
+    uncitedItemIDs?: string[]
+  ): Array<[string, number, string]> {
+    const bibliographyItemsMap = new Map(
+      bibliographyItems.map((c) => [c._id, c])
+    )
+    const getLibraryItem = (id: string) => bibliographyItemsMap.get(id)
+    const props = {
+      getLibraryItem,
+      citationStyle,
+      locale,
+    }
+    const provider = new CitationProvider(props)
+    return provider.rebuildState(citations, mode, uncitedItemIDs)
   }
 
   public makeBibliography(
@@ -124,9 +149,11 @@ export class CitationProvider {
       lang,
       getLibraryItem,
     }
-    const bibliographyItemIds = citation?.embeddedCitationItems.map((item: CitationItem) => {
-      return { id: item.bibliographyItem }
-    })
+    const bibliographyItemIds = citation?.embeddedCitationItems.map(
+      (item: CitationItem) => {
+        return { id: item.bibliographyItem }
+      }
+    )
     if (bibliographyItemIds) {
       const provider = new CitationProvider(props)
       return provider.makeCitations(citations, bibliographyItemIds)
@@ -150,6 +177,6 @@ export class CitationProvider {
       getLibraryItem,
     }
     const provider = new CitationProvider(props)
-    return provider.rebuildProcessorState(citations, 'html')
+    return provider.rebuildState(citations, 'html')
   }
 }
