@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { BibliographyItem } from '@manuscripts/json-schema'
+import { BibliographyItem, Citation } from '@manuscripts/json-schema'
 import { CitationNode, schema } from '@manuscripts/transform'
 
 import { buildCitations } from '../citation-builder'
@@ -120,6 +120,47 @@ const new_item: BibliographyItem = {
   'container-title-short': 'Patient Education and Counseling',
 }
 
+const citations: Citation[] = [
+  {
+    _id: 'MPCitation:E552D4BB-F017-4DE5-948F-70DA81C303DB',
+    createdAt: 1693219430,
+    updatedAt: 1693219430,
+    objectType: 'MPCitation',
+    containerID: 'MPProject:61184309-015d-4d42-9872-9371f3506df7',
+    manuscriptID: 'MPManuscript:D80E4AE6-83B5-4E11-A4D4-F7E7D5D6E4A1',
+    embeddedCitationItems: [
+      {
+        _id: 'MPCitationItem:8CF50196-A05F-441C-8D19-68240691BF28',
+        objectType: 'MPCitationItem',
+        bibliographyItem:
+          'MPBibliographyItem:880D5DEC-153C-43F0-8E8E-2014F56EFBA5',
+      },
+    ],
+  },
+  {
+    _id: 'MPCitation:BA02399F-F718-4AAC-AD26-EF451DA57751',
+    createdAt: 1693219430,
+    updatedAt: 1693219430,
+    objectType: 'MPCitation',
+    containerID: 'MPProject:61184309-015d-4d42-9872-9371f3506df7',
+    manuscriptID: 'MPManuscript:D80E4AE6-83B5-4E11-A4D4-F7E7D5D6E4A1',
+    embeddedCitationItems: [
+      {
+        _id: 'MPCitationItem:27952B63-2AC8-4283-9539-A98BB7AE2A57',
+        objectType: 'MPCitationItem',
+        bibliographyItem:
+          'MPBibliographyItem:910D1197-9E3E-44ED-A7D3-F79E2B073FE6',
+      },
+      {
+        _id: 'MPCitationItem:27952B63-2AC8-4283-9539-A98BB7AE2A47',
+        objectType: 'MPCitationItem',
+        bibliographyItem:
+          'MPBibliographyItem:880D5DEC-153C-43F0-8E8E-2014F56EFBA5',
+      },
+    ],
+  },
+]
+
 describe('CitationProvider', () => {
   test('generates bibliography', async () => {
     const getLibraryItem = (id: string) =>
@@ -200,5 +241,18 @@ describe('CitationProvider', () => {
       [list[0]].concat(new_item)
     )
     expect(bibliographyAfterRemovingItem.length).toEqual(2)
+
+    const citationsText = provider.getCitationsText(citations)
+
+    expect(citationsText).toEqual([
+      {
+        id: 'MPCitation:E552D4BB-F017-4DE5-948F-70DA81C303DB',
+        content: '1',
+      },
+      {
+        id: 'MPCitation:BA02399F-F718-4AAC-AD26-EF451DA57751',
+        content: '1,2',
+      },
+    ])
   })
 })

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { BibliographyItem } from '@manuscripts/json-schema'
+import { BibliographyItem, Citation } from '@manuscripts/json-schema'
 import CiteProc, { Citation as CiteProcCitation } from 'citeproc'
 
 import { variableWrapper } from './citeproc-variable-wrapper'
@@ -79,6 +79,23 @@ export class CitationProvider {
       this.engine.updateItems(citations.map((c) => c._id))
     }
     return this.engine.makeBibliography()
+  }
+
+  public getCitationsText(citations: Citation[]) {
+    return citations.map((citation) => {
+      const result = this.engine.previewCitationCluster(
+        {
+          citationID: citation._id,
+          citationItems: citation.embeddedCitationItems.map(
+            ({ bibliographyItem }) => ({ id: bibliographyItem })
+          ),
+        },
+        [],
+        [],
+        'text'
+      )
+      return { id: citation._id, content: result }
+    })
   }
 
   public static makeBibliographyFromCitations(

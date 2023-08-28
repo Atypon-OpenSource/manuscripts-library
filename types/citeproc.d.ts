@@ -20,6 +20,7 @@
 
 declare module 'citeproc' {
   interface Citation {
+    citationID?: string
     citationItems: Array<{ id: string; prefix?: string; suffix?: string }>
     properties?: {
       mode?: string
@@ -50,7 +51,7 @@ declare module 'citeproc' {
     entryspacing: number
     linespacing: number
     hangingindent: boolean
-    ["second-field-align"]: boolean
+    ['second-field-align']: boolean
     bibstart: string
     bibend: string
     bibliography_errors: string[]
@@ -81,7 +82,7 @@ declare module 'citeproc' {
      * document order, where ``string`` is the fully disambiguated citation
      * cluster for the given document position.
      *
-     * @param citations An array of citation input objects in document order. Each 
+     * @param citations An array of citation input objects in document order. Each
      * citation object must be in the following form, with correct
      * values for ``citationID``, for each ``id``, and for ``noteIndex``.
      * Set ``noteIndex`` to ``0`` for in-text citations.
@@ -111,6 +112,13 @@ declare module 'citeproc' {
     ): Array<[string, number, string]> // id, noteIndex, output
 
     public makeBibliography(): [BibliographyMetadata, Bibliography]
+
+    public previewCitationCluster(
+      citation: Citation,
+      citationsPre: [],
+      citationsPost: [],
+      flag?: 'text' | 'html'
+    )
   }
 
   export function getLocaleNames(
