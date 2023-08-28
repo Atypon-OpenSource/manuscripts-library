@@ -67,8 +67,9 @@ export class CitationProvider {
     const c = this.getLibraryItem(id)
     if (c) {
       return convertBibliographyItemToCSL(c)
+    } else {
+      throw Error(`Missing CitationProvider citation with id ${id}`)
     }
-    throw Error(`Missing CitationProvider citation with id ${id}`)
   }
 
   public rebuildState(
