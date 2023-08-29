@@ -14,11 +14,7 @@
  * limitations under the License.
  */
 
-import {
-  BibliographyItem,
-  Citation,
-  CitationItem,
-} from '@manuscripts/json-schema'
+import { BibliographyItem } from '@manuscripts/json-schema'
 import CiteProc, { Citation as CiteProcCitation } from 'citeproc'
 
 import { variableWrapper } from './citeproc-variable-wrapper'
@@ -29,10 +25,6 @@ interface Props {
   getLibraryItem: (id: string) => BibliographyItem | undefined
   citationStyle: string
   locale?: string
-}
-
-interface idList {
-  id: string
 }
 
 export class CitationProvider {
@@ -111,16 +103,6 @@ export class CitationProvider {
     return this.engine.makeBibliography()
   }
 
-  public makeCitations(
-    citations: BibliographyItem[],
-    bibliographyItemIds: idList[]
-  ) {
-    if (citations) {
-      this.engine.updateItems(citations.map((c) => c._id))
-    }
-    return this.engine.makeCitationCluster(bibliographyItemIds)
-  }
-
   public static makeBibliographyFromCitations(
     citations: BibliographyItem[],
     citationStyle: string,
@@ -135,49 +117,5 @@ export class CitationProvider {
     }
     const provider = new CitationProvider(props)
     return provider.makeBibliography(citations)
-  }
-
-  public static makeCitationCluster(
-    citations: BibliographyItem[],
-    citation: Citation,
-    citationStyle: string,
-    lang?: string
-  ) {
-    const citationsMap = new Map(citations.map((c) => [c._id, c]))
-    const getLibraryItem = (id: string) => citationsMap.get(id)
-    const props = {
-      citationStyle,
-      lang,
-      getLibraryItem,
-    }
-    const bibliographyItemIds = citation?.embeddedCitationItems.map(
-      (item: CitationItem) => {
-        return { id: item.bibliographyItem }
-      }
-    )
-    if (bibliographyItemIds) {
-      const provider = new CitationProvider(props)
-      return provider.makeCitations(citations, bibliographyItemIds)
-    }
-    return ''
-  }
-
-  public static rebuildCitations(
-    citations: CiteProcCitation[],
-    bibliographyItems: BibliographyItem[],
-    citationStyle: string,
-    lang?: string
-  ): Array<[string, number, string]> {
-    const bibliographyItemsMap = new Map(
-      bibliographyItems.map((c) => [c._id, c])
-    )
-    const getLibraryItem = (id: string) => bibliographyItemsMap.get(id)
-    const props = {
-      citationStyle,
-      lang,
-      getLibraryItem,
-    }
-    const provider = new CitationProvider(props)
-    return provider.rebuildState(citations, 'html')
   }
 }
