@@ -57,10 +57,6 @@ declare module 'citeproc' {
     entry_ids: string[]
   }
 
-  interface idList {
-    id: string
-  }
-
   type Bibliography = string[]
 
   export class Engine {
