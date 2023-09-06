@@ -59,17 +59,39 @@ export class CitationProvider {
     const c = this.getLibraryItem(id)
     if (c) {
       return convertBibliographyItemToCSL(c)
+    } else {
+      throw Error(`Missing CitationProvider citation with id ${id}`)
     }
-    throw Error(`Missing CitationProvider citation with id ${id}`)
   }
 
-  public rebuildProcessorState(
+  public rebuildState(
     citations: CiteProcCitation[],
     mode?: 'text' | 'html' | 'rtf',
     uncitedItemIDs?: string[]
   ): Array<[string, number, string]> {
     // id, noteIndex, output
     return this.engine.rebuildProcessorState(citations, mode, uncitedItemIDs)
+  }
+
+  public static rebuildProcessorState(
+    citations: CiteProcCitation[],
+    bibliographyItems: BibliographyItem[],
+    citationStyle: string,
+    locale?: string,
+    mode?: 'text' | 'html' | 'rtf',
+    uncitedItemIDs?: string[]
+  ): Array<[string, number, string]> {
+    const bibliographyItemsMap = new Map(
+      bibliographyItems.map((c) => [c._id, c])
+    )
+    const getLibraryItem = (id: string) => bibliographyItemsMap.get(id)
+    const props = {
+      getLibraryItem,
+      citationStyle,
+      locale,
+    }
+    const provider = new CitationProvider(props)
+    return provider.rebuildState(citations, mode, uncitedItemIDs)
   }
 
   public makeBibliography(

@@ -41,8 +41,7 @@ describe('CitationProvider', () => {
         getLibraryItem
       )
 
-      const generatedCitations =
-        citationProvider.rebuildProcessorState(citations)
+      const generatedCitations = citationProvider.rebuildState(citations)
 
       expect(generatedCitations).toMatchSnapshot(`citations-${cslIdentifier}`)
 

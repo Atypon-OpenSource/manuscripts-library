@@ -82,6 +82,30 @@ export const buildCitations = (
     },
   }))
 
+export const buildBibliographyItems = (
+  citationNodes: CitationNodes,
+  getLibraryItem: (id: string) => BibliographyItem | undefined
+): BibliographyItem[] => {
+  const bibliographyItems: BibliographyItem[] = []
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  citationNodes.map(([node, pos, citation]) => {
+    citation.embeddedCitationItems.map((citationItem: CitationItem) => {
+      const libraryItem = getLibraryItem(citationItem.bibliographyItem)
+      if (
+        !bibliographyItems.some(
+          (item) => item._id === citationItem.bibliographyItem
+        ) &&
+        libraryItem
+      ) {
+        bibliographyItems.push(libraryItem)
+      }
+    })
+  })
+
+  return bibliographyItems
+}
+
 export const createBibliographyElementContents = (
   bibliographyItems: string[],
   id?: string,

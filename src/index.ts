@@ -23,6 +23,7 @@ export {
 } from './citation-matcher'
 
 export {
+  buildBibliographyItems,
   buildCitationNodes,
   buildCitations,
   createBibliographyElementContents,
