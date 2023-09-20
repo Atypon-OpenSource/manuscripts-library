@@ -179,13 +179,13 @@ export const convertBibliographyItemToCSL = (
         output[key] = Number.isInteger(item) ? item : String(item)
       } else if (isStringFieldKey(key)) {
         output[key] = String(item)
-      } else if (isPersonFieldKey(key)) {
+      } else if (isPersonFieldKey(key) && item) {
         output[key] = (item as BibliographicName[]).map((name) => {
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
           const { _id, objectType, ...rest } = name
           return rest
         }) as Person[]
-      } else if (isDateFieldKey(key)) {
+      } else if (isDateFieldKey(key) && item) {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { _id, objectType, ...rest } = item as BibliographicDate
         output[key] = rest as Date
