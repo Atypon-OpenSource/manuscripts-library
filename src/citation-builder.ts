@@ -31,13 +31,15 @@ export const buildCitationNodes = (
   getModel: <T extends Model>(id: string) => T | undefined
 ): CitationNodes => {
   const citationNodes: CitationNodes = []
+  const citationIds: string[] = []
 
   doc.descendants((node: Node, pos: number) => {
-    if (isCitationNode(node)) {
+    if (isCitationNode(node) && !citationIds.includes(node.attrs.rid)) {
       const citation = getModel<Citation>(node.attrs.rid)
 
       if (citation) {
         citationNodes.push([node, pos, citation])
+        citationIds.push(node.attrs.rid)
       }
     }
   })
