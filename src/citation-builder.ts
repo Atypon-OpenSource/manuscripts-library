@@ -28,14 +28,14 @@ import type { CitationNodes } from './types'
 
 export const buildCitationNodes = (
   doc: ManuscriptNode,
-  getModel: <T extends Model>(id: string) => T | undefined
+  modelMap: Map<string, Model>
 ): CitationNodes => {
   const citationNodes: CitationNodes = []
   const citationIds: string[] = []
 
   doc.descendants((node: Node, pos: number) => {
     if (isCitationNode(node) && !citationIds.includes(node.attrs.rid)) {
-      const citation = getModel<Citation>(node.attrs.rid)
+      const citation = modelMap.get(node.attrs.rid) as Citation
 
       if (citation) {
         citationNodes.push([node, pos, citation])
