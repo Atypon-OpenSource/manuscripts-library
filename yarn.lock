@@ -1324,20 +1324,20 @@
     eslint-config-prettier "^8.5.0"
     prettier "^2.8.1"
 
-"@manuscripts/json-schema@^2.2.0":
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/@manuscripts/json-schema/-/json-schema-2.2.0.tgz#8507707f00c0e6cead4f4e2f2e1797f9bccec4af"
-  integrity sha512-2ooif0jtIld5bA44DHPpsNbDvdoQWaFcNXiBlc7OQ0znY37e5juMipknEtNTvdHCtHpzBkrLJt7k77bBT7VaVQ==
+"@manuscripts/json-schema@2.2.0-LEAN-2852-1":
+  version "2.2.0-LEAN-2852-1"
+  resolved "https://registry.yarnpkg.com/@manuscripts/json-schema/-/json-schema-2.2.0-LEAN-2852-1.tgz#9e8b277fbc865ffa68e10394d28673c99a78b839"
+  integrity sha512-fLun0/Sh7f3GaKmsi79SzUUwhJZb+uMg4yDsw5jKVUWJ1zBknbFUbAGmmQvK5n3+KeRwfdbw4pP6czKByP7GGw==
   dependencies:
     ajv "^8.12.0"
     deepmerge "^4.3.1"
 
-"@manuscripts/transform@^1.4.3":
-  version "1.4.3"
-  resolved "https://registry.yarnpkg.com/@manuscripts/transform/-/transform-1.4.3.tgz#2c7d033b57320c388293ecaa178e791beeed55c4"
-  integrity sha512-sceyLkRujlcUWMoNry4fe/v8rg5xEmd1imz/7WaFGMdQcnC/yToI7OAbw157pE3hK4ZKmR199VV6p28XiZKHuQ==
+"@manuscripts/transform@1.4.4-LEAN-2852-1":
+  version "1.4.4-LEAN-2852-1"
+  resolved "https://registry.yarnpkg.com/@manuscripts/transform/-/transform-1.4.4-LEAN-2852-1.tgz#92eeb3c203ba4ebb62908f7ccfefadafb4be5252"
+  integrity sha512-5oHgC+4UD2mV/6sxcD8Lau+JEyNutuZH4uxkXAaOZDA4v7HudBR/0YpaFya1zYhWzmRxMBXy0mTtOkkyZe3Mvw==
   dependencies:
-    "@manuscripts/json-schema" "^2.2.0"
+    "@manuscripts/json-schema" "2.2.0-LEAN-2852-1"
     debug "^4.3.4"
     jszip "^3.10.1"
     mathjax-full "^3.2.2"
