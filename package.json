@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "@manuscripts/json-schema": "2.2.0-LEAN-2852-14",
-    "@manuscripts/transform": "1.5.1-LEAN-2852-15",
+    "@manuscripts/transform": "1.5.1-LEAN-2852-16",
     "astrocite-bibtex": "^0.16.4",
     "astrocite-ris": "^0.16.4",
     "citeproc": "^2.4.62",
