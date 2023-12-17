@@ -18,16 +18,11 @@ export { parseBibliography } from './csl-parser'
 export { CitationProvider } from './CitationProvider'
 
 export {
-  matchLibraryItemByIdentifier,
+  findMatchingBibliographyItem,
   bibliographyItemTypes,
 } from './citation-matcher'
 
-export {
-  buildBibliographyItems,
-  buildCitationNodes,
-  buildCitations,
-  createBibliographyElementContents,
-} from './citation-builder'
+export { buildBibliographyItems, buildCitations } from './citation-builder'
 
 export {
   convertCSLToBibliographyItem,
@@ -44,5 +39,3 @@ export {
   shortLibraryItemMetadata,
   fullLibraryItemMetadata,
 } from './citation-utils'
-
-export type { CitationNodes } from './types'

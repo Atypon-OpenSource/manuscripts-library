@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-import { CitationNode, schema } from '@manuscripts/transform'
-
 import { buildCitations } from '../citation-builder'
 import { CitationProvider } from '../CitationProvider'
 import defaultLocal from '../defaultLocale'
@@ -34,12 +32,7 @@ describe('CitationProvider', () => {
         getLibraryItem,
       })
 
-      const dummyNode = schema.nodes.citation.create() as CitationNode
-
-      const citations = buildCitations(
-        citationModels.map((m) => [dummyNode, -1, m]),
-        getLibraryItem
-      )
+      const citations = buildCitations(citationModels, getLibraryItem)
 
       const generatedCitations = citationProvider.rebuildState(citations)
 
