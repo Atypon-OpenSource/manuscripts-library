@@ -18,6 +18,7 @@ import {
   BibliographicDate,
   BibliographicName,
   BibliographyItem,
+  ObjectTypes,
 } from '@manuscripts/json-schema'
 import {
   buildBibliographicDate,
@@ -156,8 +157,7 @@ export const convertCSLToBibliographyItem = (
 
   for (const [key, item] of Object.entries(data)) {
     if (isNumberFieldKey(key)) {
-      // @ts-ignore TODO
-      output[key] = Number.isInteger(item) ? item : String(item)
+      output[key] = Number.isInteger(item) ? (item as number) : String(item)
     } else if (isStringFieldKey(key)) {
       output[key] = String(item)
     } else if (isPersonFieldKey(key)) {

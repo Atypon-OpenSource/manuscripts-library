@@ -14,38 +14,8 @@
  * limitations under the License.
  */
 
-import type {
-  BibliographyItem,
-  Citation,
-  CitationItem,
-  Model,
-} from '@manuscripts/json-schema'
-import { isCitationNode, ManuscriptNode } from '@manuscripts/transform'
+import type { BibliographyItem, Citation } from '@manuscripts/json-schema'
 import CiteProc from 'citeproc'
-import { Node } from 'prosemirror-model'
-
-import type { CitationNodes } from './types'
-
-export const buildCitationNodes = (
-  doc: ManuscriptNode,
-  modelMap: Map<string, Model>
-): CitationNodes => {
-  const citationNodes: CitationNodes = []
-  const citationIds: string[] = []
-
-  doc.descendants((node: Node, pos: number) => {
-    if (isCitationNode(node) && !citationIds.includes(node.attrs.rid)) {
-      const citation = modelMap.get(node.attrs.rid) as Citation
-
-      if (citation) {
-        citationNodes.push([node, pos, citation])
-        citationIds.push(node.attrs.rid)
-      }
-    }
-  })
-
-  return citationNodes
-}
 
 type DisplayScheme =
   | 'show-all'
@@ -62,18 +32,15 @@ const chooseMode = (displayScheme?: DisplayScheme) => {
 }
 
 export const buildCitations = (
-  citationNodes: CitationNodes,
-  getLibraryItem: (id: string) => BibliographyItem | undefined
+  citations: Citation[],
+  getBibliographyItem: (id: string) => BibliographyItem | undefined
 ): CiteProc.Citation[] =>
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  citationNodes.map(([node, pos, citation]) => ({
+  citations.map((citation) => ({
     citationID: citation._id,
-    citationItems: citation.embeddedCitationItems.map(
-      (citationItem: CitationItem) => ({
-        id: citationItem.bibliographyItem,
-        data: getLibraryItem(citationItem.bibliographyItem), // for comparison
-      })
-    ),
+    citationItems: citation.embeddedCitationItems.map((item) => ({
+      id: item.bibliographyItem,
+      data: getBibliographyItem(item.bibliographyItem),
+    })),
     properties: {
       noteIndex: 0,
       mode: chooseMode(citation.displayScheme),
@@ -85,44 +52,22 @@ export const buildCitations = (
   }))
 
 export const buildBibliographyItems = (
-  citationNodes: CitationNodes,
-  getLibraryItem: (id: string) => BibliographyItem | undefined
+  citations: Citation[],
+  getBibliographyItem: (id: string) => BibliographyItem | undefined
 ): BibliographyItem[] => {
-  const bibliographyItems: BibliographyItem[] = []
+  const itemIDs: Set<string> = new Set<string>()
+  citations
+    .flatMap((c) => c.embeddedCitationItems)
+    .map((i) => i.bibliographyItem)
+    .forEach(itemIDs.add)
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  citationNodes.map(([node, pos, citation]) => {
-    citation.embeddedCitationItems.map((citationItem: CitationItem) => {
-      const libraryItem = getLibraryItem(citationItem.bibliographyItem)
-      if (
-        !bibliographyItems.some(
-          (item) => item._id === citationItem.bibliographyItem
-        ) &&
-        libraryItem
-      ) {
-        bibliographyItems.push(libraryItem)
-      }
-    })
+  const items: BibliographyItem[] = []
+  itemIDs.forEach((id) => {
+    const item = getBibliographyItem(id)
+    if (item) {
+      items.push(item)
+    }
   })
 
-  return bibliographyItems
-}
-
-export const createBibliographyElementContents = (
-  bibliographyItems: string[],
-  id?: string,
-  placeholder?: string
-): HTMLElement => {
-  const contents = document.createElement('div')
-  contents.classList.add('csl-bib-body')
-  id && contents.setAttribute('id', id)
-
-  if (bibliographyItems.length) {
-    contents.innerHTML = bibliographyItems.join('\n')
-  } else {
-    contents.classList.add('empty-node')
-    placeholder && contents.setAttribute('data-placeholder', placeholder)
-  }
-
-  return contents
+  return items
 }

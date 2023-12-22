@@ -16,39 +16,26 @@
 
 import { BibliographyItem } from '@manuscripts/json-schema'
 
-export const matchLibraryItemByIdentifier = (
+export const findMatchingBibliographyItem = (
   item: BibliographyItem,
-  library: Map<string, BibliographyItem>
+  modelMap: Map<string, BibliographyItem>
 ): BibliographyItem | undefined => {
-  if (library.has(item._id)) {
-    return library.get(item._id)
+  if (modelMap.has(item._id)) {
+    return modelMap.get(item._id)
   }
 
-  if (item.DOI) {
-    const doi = item.DOI.toLowerCase()
-
-    for (const model of library.values()) {
-      if (model.DOI && model.DOI.toLowerCase() === doi) {
-        return model
-      }
+  for (const model of modelMap.values()) {
+    const doi = item.DOI?.toLowerCase()
+    if (doi && doi === model.DOI?.toLowerCase()) {
+      return model
     }
-  }
-
-  if (item.PMID) {
-    for (const model of library.values()) {
-      if (model.PMID && model.PMID === item.PMID) {
-        return model
-      }
+    const pmid = item.PMID
+    if (pmid && pmid === model.PMID) {
+      return model
     }
-  }
-
-  if (item.URL) {
-    const url = item.URL.toLowerCase()
-
-    for (const model of library.values()) {
-      if (model.URL && model.URL.toLowerCase() === url) {
-        return model
-      }
+    const url = item.URL?.toLowerCase()
+    if (url && url === model.URL?.toLowerCase()) {
+      return model
     }
   }
 }
