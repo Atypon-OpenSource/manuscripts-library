@@ -18,12 +18,9 @@ import {
   BibliographicDate,
   BibliographicName,
   BibliographyItem,
-  ObjectTypes,
-} from '@manuscripts/json-schema'
-import {
   buildBibliographicDate,
   buildBibliographicName,
-} from '@manuscripts/transform'
+} from '@manuscripts/json-schema'
 import {
   Data,
   Date,
