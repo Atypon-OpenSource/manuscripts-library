@@ -25,10 +25,7 @@
   },
   "dependencies": {
     "@manuscripts/json-schema": "2.2.10",
-    "astrocite-bibtex": "^0.16.4",
-    "astrocite-ris": "^0.16.4",
-    "citeproc": "^2.4.62",
-    "fontoxpath": "^3.28.2"
+    "citeproc": "^2.4.62"
   },
   "devDependencies": {
     "@babel/core": "^7.20.5",
