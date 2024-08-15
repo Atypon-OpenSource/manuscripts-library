@@ -1890,29 +1890,6 @@ ast-types-flow@^0.0.7:
   resolved "https://registry.yarnpkg.com/ast-types-flow/-/ast-types-flow-0.0.7.tgz#f70b735c6bca1a5c9c22d982c3e39e7feba3bdad"
   integrity sha512-eBvWn1lvIApYMhzQMsu9ciLfkBY499mFZlNqG+/9WR7PVlroQw0vG30cOQQbaKz3sCEc44TAOu2ykzqXSNnwag==
 
-astrocite-bibtex@^0.16.4:
-  version "0.16.4"
-  resolved "https://registry.yarnpkg.com/astrocite-bibtex/-/astrocite-bibtex-0.16.4.tgz#e90ba7012cbd41befd633c783691a55e5710e78c"
-  integrity sha512-5u6uNPDzqxYoJL4x2ekGeZbcBPCIHUt3JBKX0nurpOfHzJjP8SMuVO6u/fcUaG92XPoa/oKhUAFHvtwFab49iQ==
-  dependencies:
-    astrocite-core "^0.16.0"
-    csl-json "^0.1.0"
-
-astrocite-core@^0.16.0:
-  version "0.16.0"
-  resolved "https://registry.yarnpkg.com/astrocite-core/-/astrocite-core-0.16.0.tgz#63b1616200e62b1005d5c4e7c5e8472c8b7dd364"
-  integrity sha512-+NOD5Wqtcf89htPyI0iOeaPaTjncbHgBQaF3Yp6Y0l8ynJJzrweZuHVRlX8vBeaxzy+yptI91+w+Lt+ir20pnw==
-  dependencies:
-    csl-json "^0.1.0"
-
-astrocite-ris@^0.16.4:
-  version "0.16.4"
-  resolved "https://registry.yarnpkg.com/astrocite-ris/-/astrocite-ris-0.16.4.tgz#163094b402ef4bc7c63fd3c7f9fb91694996cde8"
-  integrity sha512-O6TjeuJGugxhn07JQSmTl3zTXS67crQr99pXbq+0XYRS+8Z+kYMVJNe6Eam2VZKFl4t6E3jm+0rZN2aUmsSAGA==
-  dependencies:
-    astrocite-core "^0.16.0"
-    csl-json "^0.1.0"
-
 asynckit@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
@@ -3049,14 +3026,6 @@ flatted@^3.1.0:
   version "3.2.7"
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-3.2.7.tgz#609f39207cb614b89d0765b477cb2d437fbf9787"
   integrity sha512-5nqDSxl8nn5BSNxyR3n4I6eDmbolI6WT+QqR547RwxQapgjQBmtktdP+HTBb/a/zLsbzERTONyUB5pefh5TtjQ==
-
-fontoxpath@^3.28.2:
-  version "3.28.2"
-  resolved "https://registry.yarnpkg.com/fontoxpath/-/fontoxpath-3.28.2.tgz#74689f71fb932f02d1f3d96f3dcec5f07274a6be"
-  integrity sha512-/iJtqpM8LTriFRP1VllL6LUouO6g4VDurbFpRF7Kapy8blNhpQ2BdzkHTBs9kRa6RGOulRWSEn/otqqciEtECA==
-  dependencies:
-    prsc "4.0.0"
-    xspattern "^3.0.0"
 
 form-data@^4.0.0:
   version "4.0.0"
@@ -5113,11 +5082,6 @@ prop-types@^15.8.1:
     object-assign "^4.1.1"
     react-is "^16.13.1"
 
-prsc@4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/prsc/-/prsc-4.0.0.tgz#22a300478749924c92c25e04c514f8a2b93ae719"
-  integrity sha512-OmXQ2v76RlXNx/gqv7+oB6jyKnudJ/rsMfAIVexhbDFxXAJPoWKMxJkZU2ohlu4miCiSQCG+horf2DV4/kNc1Q==
-
 psl@^1.1.33:
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/psl/-/psl-1.9.0.tgz#d0df2a137f00794565fcaf3b2c00cd09f8d5a5a7"
@@ -6021,11 +5985,6 @@ which@^2.0.1:
   dependencies:
     isexe "^2.0.0"
 
-whynot@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/whynot/-/whynot-5.0.0.tgz#d4b39a8e18d0c371d7bfb42dd8321a3432c74c7a"
-  integrity sha512-cGGfDPYYqoHoMWqXVc3G+N74u1FhFhrBa+pOO906b9ktRc/JFUdwroTkfPqjKzyoCLVcKr6yy6bYIcWT7jTg2A==
-
 word-wrap@^1.2.3, word-wrap@~1.2.3:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/word-wrap/-/word-wrap-1.2.3.tgz#610636f6b1f703891bd34771ccb17fb93b47079c"
@@ -6067,13 +6026,6 @@ xmlchars@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/xmlchars/-/xmlchars-2.2.0.tgz#060fe1bcb7f9c76fe2a17db86a9bc3ab894210cb"
   integrity sha512-JZnDKK8B0RCDw84FNdDAIpZK+JuJw+s7Lz8nksI7SIuU3UXJJslUthsi+uWBUYOwPFwW7W7PRLRfUKpxjtjFCw==
-
-xspattern@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/xspattern/-/xspattern-3.0.0.tgz#ca708009d87051ed288034b1ce7c8a5eebe07e3f"
-  integrity sha512-iPeFwpN6Xy54+BY1KfENhc3crGBeDdJ1G2g6GSTyM1vK2HJjvmuq7gC1lFs0M6AlTlXRK+hqXHk7u+HcHXveQQ==
-  dependencies:
-    whynot "^5.0.0"
 
 y18n@^5.0.5:
   version "5.0.8"
