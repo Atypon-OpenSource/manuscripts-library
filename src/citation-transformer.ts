@@ -13,27 +13,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// import { Citation } from "@citation-js/core"
+
 import * as Citation from '@citation-js/core'
 import { BibliographyItem } from '@manuscripts/json-schema'
 
 const loadCitationPlugins = async () => {
-  await import('@citation-js/plugin-bibtex')
-  await import('@citation-js/plugin-ris')
-  await import('@citation-js/plugin-doi')
-  await import('@citation-js/plugin-csl')
-  await import('@citation-js/plugin-pubmed')
-  await import('@citation-js/plugin-enw')
+  try {
+    await Promise.all([
+      import('@citation-js/plugin-bibtex'),
+      import('@citation-js/plugin-ris'),
+      import('@citation-js/plugin-doi'),
+      import('@citation-js/plugin-csl'),
+      import('@citation-js/plugin-pubmed'),
+      import('@citation-js/plugin-enw'),
+    ])
+  } catch (error) {
+    console.error('Failed to load citation plugins:', error)
+  }
 }
 
-export const transformBib = async (
+export const transformBibliography = async (
   data: string
-): Promise<Partial<BibliographyItem>[]> => {
+): Promise<BibliographyItem[]> => {
   await loadCitationPlugins()
   const cite = await Citation.Cite.async(data.trim())
-  return cite.data.map((entry: Partial<BibliographyItem>) => ({
-    ...entry,
-    doi: entry.DOI,
-    containerTitle: entry['container-title'],
+  return cite.data.map((item: BibliographyItem) => ({
+    ...item,
+    doi: item.DOI,
+    containerTitle: item['container-title'],
   }))
 }

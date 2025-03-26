@@ -38,4 +38,4 @@ export {
   fullLibraryItemMetadata,
 } from './citation-utils'
 
-export { transformBib } from './citation-transformer'
+export { transformBibliography } from './citation-transformer'
