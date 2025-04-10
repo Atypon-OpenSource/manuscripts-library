@@ -1,6 +1,6 @@
 {
   "name": "@manuscripts/library",
-  "version": "1.3.11",
+  "version": "1.3.13",
   "repository": "github:Atypon-OpenSource/manuscripts-library",
   "license": "Apache-2.0",
   "main": "dist/cjs",
@@ -25,7 +25,14 @@
   },
   "dependencies": {
     "@manuscripts/json-schema": "2.2.10",
-    "citeproc": "^2.4.62"
+    "citeproc": "^2.4.62",
+    "@citation-js/core": "^0.7.18",
+    "@citation-js/plugin-bibtex": "^0.7.18",
+    "@citation-js/plugin-csl": "^0.7.18",
+    "@citation-js/plugin-doi": "^0.7.18",
+    "@citation-js/plugin-enw": "^0.3.0",
+    "@citation-js/plugin-pubmed": "^0.3.0",
+    "@citation-js/plugin-ris": "^0.7.18"
   },
   "devDependencies": {
     "@babel/core": "^7.20.5",

@@ -37,3 +37,5 @@ export {
   shortLibraryItemMetadata,
   fullLibraryItemMetadata,
 } from './citation-utils'
+
+export { transformBibliography } from './citation-transformer'

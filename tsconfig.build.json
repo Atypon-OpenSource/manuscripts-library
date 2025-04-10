@@ -1,8 +1,16 @@
 {
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist"
+  },
   "extends": "./tsconfig.json",
   "exclude": [
     "**/__fixtures__",
     "**/__mocks__",
-    "**/__tests__"
-  ]
+    "**/__tests__",
+    "node_modules",
+    "dist"
+  ],
+  "include": ["src"],
+  "types": ["types", "src/types"],  
 }
