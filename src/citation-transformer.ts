@@ -39,7 +39,5 @@ export const transformBibliography = async (
   const cite = await Citation.Cite.async(data.trim())
   return cite.data.map((item: BibliographyItem) => ({
     ...item,
-    doi: item.DOI,
-    containerTitle: item['container-title'],
   }))
 }
