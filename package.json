@@ -11,9 +11,9 @@
   ],
   "scripts": {
     "build": "npm-run-all --parallel build:*",
-    "build:cjs": "tsc --outDir dist/cjs --module commonjs --project tsconfig.build.json",
-    "build:es": "tsc --outDir dist/es --declarationDir dist/types --declaration --project tsconfig.build.json",
-    "dev": "yarn build:es --watch",
+    "build:cjs": "tsc --outDir dist/cjs --module commonjs",
+    "build:es": "tsc --outDir dist/es --declarationDir dist/types --declaration",
+    "dev": "pnpm build:es --watch",
     "lint": "eslint src --ext .ts,.tsx",
     "lint:fix": "eslint src --fix --ext .ts,.tsx",
     "prebuild": "rimraf dist",
@@ -21,7 +21,7 @@
     "preversion": "npm-run-all --parallel lint typecheck test",
     "test": "jest --runInBand",
     "typecheck": "tsc --noEmit",
-    "version": "yarn build"
+    "version": "pnpm build"
   },
   "dependencies": {
     "@manuscripts/json-schema": "2.2.10",
