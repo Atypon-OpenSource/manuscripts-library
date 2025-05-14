@@ -51,7 +51,6 @@ describe('csl-converter', () => {
       },
       illustrator: [
         {
-          _id: 'MPBibliographicName:003024D5-CC4B-4C9B-95EA-C1D24255827E',
           family: 'Derp',
           objectType: 'MPBibliographicName',
         },
