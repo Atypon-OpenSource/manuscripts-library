@@ -24,7 +24,7 @@
     "version": "yarn build"
   },
   "dependencies": {
-    "@manuscripts/json-schema": "2.2.10",
+    "@manuscripts/json-schema": "2.2.12-LEAN-4531",
     "citeproc": "^2.4.62",
     "@citation-js/core": "^0.7.18",
     "@citation-js/plugin-bibtex": "^0.7.18",
