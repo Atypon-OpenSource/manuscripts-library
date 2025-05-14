@@ -179,7 +179,7 @@ export const convertBibliographyItemToCSL = (
       } else if (isPersonFieldKey(key) && item) {
         output[key] = (item as BibliographicName[]).map((name) => {
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          const { _id, objectType, ...rest } = name
+          const { objectType, ...rest } = name
           return rest
         }) as Person[]
       } else if (isDateFieldKey(key) && item) {
